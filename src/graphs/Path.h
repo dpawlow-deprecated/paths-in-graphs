@@ -12,16 +12,16 @@ public:
     vector<Edge> edges;
 
     Path();
-    explicit Path(Edge edge);
-    explicit Path(Path path);
+    explicit Path(Edge const &edge);
+    Path(Path const &path);
 
-    void ExtendPath(Edge edge);
+    void ExtendPath(Edge const &edge);
 
-    long GetLength();
-    Weight GetWeight();
+    long GetLength() const;
+    Weight GetWeight() const;
+
 private:
     Weight weight;
-
 };
 
 

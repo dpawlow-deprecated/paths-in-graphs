@@ -6,12 +6,14 @@
 
 class Edge {
 public:
+    Edge(Edge const &edge);
     Edge(Node start, Node finish);
     Edge(Node start, Node finish, Weight weight);
 
-    Weight GetWeight();
-    Node GetStartingNode();
-    Node GetFinishingNode();
+
+    Weight GetWeight() const;
+    Node GetStartingNode() const;
+    Node GetFinishingNode() const;
 
 private:
     Node start;

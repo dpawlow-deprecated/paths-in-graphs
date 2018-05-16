@@ -4,24 +4,24 @@ Path::Path() {
     this->weight = 0;
 }
 
-Path::Path(Edge edge) {
+Path::Path(Edge const &edge) {
     ExtendPath(edge);
 }
 
-Path::Path(Path path) {
+Path::Path(Path const &path) {
     this->edges = path.edges;
     this->weight = path.GetWeight();
 }
 
-void Path::ExtendPath(Edge edge) {
+void Path::ExtendPath(Edge const &edge) {
     this->edges.push_back(edge);
     this->weight += edge.GetWeight();
 }
 
-Weight Path::GetWeight() {
+Weight Path::GetWeight() const {
     return this->weight;
 }
 
-long Path::GetLength() {
+long Path::GetLength() const {
     return this->edges.size();
 }
