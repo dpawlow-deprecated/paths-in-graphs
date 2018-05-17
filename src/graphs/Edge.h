@@ -10,7 +10,6 @@ public:
     Edge(Node start, Node finish);
     Edge(Node start, Node finish, Weight weight);
 
-
     Weight GetWeight() const;
     Node GetStartingNode() const;
     Node GetFinishingNode() const;

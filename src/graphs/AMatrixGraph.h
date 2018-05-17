@@ -1,10 +1,5 @@
-//
-// Created by dante on 16.05.18.
-//
-
 #ifndef PATHS_IN_GRAPHS_AMATRIXGRAPH_H
 #define PATHS_IN_GRAPHS_AMATRIXGRAPH_H
-
 
 #include "Graph.h"
 
@@ -20,11 +15,6 @@ private:
             weight = 0;
         }
 
-        explicit MatrixEdge(bool connected) {
-            is_connected = connected;
-            weight = 0;
-        }
-
         explicit MatrixEdge(Weight w) {
             is_connected = true;
             weight = w;
@@ -36,12 +26,15 @@ private:
     bool is_weighted;
 
 public:
-    Path MinimumPath(Node start, Node finish) override;
-    bool ExistsEdge(Node start, Node finish) override;
-    Weight GetEdgeWeight(Node start, Node finish);
-    bool IsDirected();
-    bool IsWeighted();
+    void AddEdge(Edge const &edge) override;
+    bool EdgeExists(Node start, Node finish) override;
+    Weight GetEdgeWeight(Node start, Node finish) override;
 
+    bool IsDirected() override;
+    bool IsWeighted() override;
+
+    Path MinimumPath(Node start, Node finish) override;
+    unique_ptr<Graph> MinimumSpanningTree() override;
 };
 
 
