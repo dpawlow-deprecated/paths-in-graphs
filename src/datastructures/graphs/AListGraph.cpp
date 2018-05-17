@@ -3,17 +3,17 @@
 using namespace std;
 
 void AListGraph::AddEdge(Edge const &edge) {
-    adjacency_list[edge.GetStartingNode()].emplace_front(ListNode(edge.GetFinishingNode(),edge.GetWeight()));
+    adjacency_list[edge.GetStartingNode()].emplace_front(Edge(edge));
     adjacency_list[edge.GetStartingNode()].unique();
     if (!IsDirected()) {
-        adjacency_list[edge.GetFinishingNode()].emplace_front(ListNode(edge.GetStartingNode(), edge.GetWeight()));
+        adjacency_list[edge.GetFinishingNode()].emplace_front(Edge(edge));
         adjacency_list[edge.GetFinishingNode()].unique();
     }
 }
 
 bool AListGraph::EdgeExists(Node start, Node finish) {
     for (auto it = adjacency_list[start].begin(); it != adjacency_list[start].end(); ++it ) {
-        if (it->node == finish) {
+        if (it->GetFinishingNode() == finish) {
             return true;
         }
     }
@@ -22,8 +22,8 @@ bool AListGraph::EdgeExists(Node start, Node finish) {
 
 Weight AListGraph::GetEdgeWeight(Node start, Node finish) {
     for (auto it = adjacency_list[start].begin(); it != adjacency_list[start].end(); ++it ) {
-        if (it->node == finish) {
-            return it->edge_weight;
+        if (it->GetFinishingNode() == finish) {
+            return it->GetWeight();
         }
     }
     throw logic_error("Edge doesn't exist.");

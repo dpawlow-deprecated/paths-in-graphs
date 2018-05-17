@@ -8,17 +8,7 @@ using namespace std;
 
 class AListGraph: public Graph {
 private:
-    struct ListNode {
-        Node node;
-        Weight edge_weight;
-
-        ListNode(Node n, Weight w){
-            node = n;
-            edge_weight = w;
-        }
-    };
-
-    vector<std::forward_list<ListNode>> adjacency_list;
+    vector<std::forward_list<Edge>> adjacency_list;
 
 public:
     void AddEdge(Edge const &edge) override;
