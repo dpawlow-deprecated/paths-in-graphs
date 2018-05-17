@@ -23,7 +23,6 @@ private:
 
     vector<vector<MatrixEdge>> adjacency_matrix;
     bool is_directed;
-    bool is_weighted;
 
 public:
     void AddEdge(Edge const &edge) override;
@@ -31,7 +30,9 @@ public:
     Weight GetEdgeWeight(Node start, Node finish) override;
 
     bool IsDirected() override;
-    bool IsWeighted() override;
+
+    unsigned long GetNumberOfNodes();
+    vector<Edge>::iterator GetFirstIteratorEdges();
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;

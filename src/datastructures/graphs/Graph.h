@@ -14,7 +14,10 @@ public:
     virtual Weight GetEdgeWeight(Node start, Node finish) = 0;
 
     virtual bool IsDirected() = 0;
-    virtual bool IsWeighted() = 0;
+
+    virtual unsigned long GetNumberOfNodes() = 0;
+    virtual vector<Edge>::iterator GetFirstIteratorEdges() = 0;
+    virtual vector<Edge>::iterator GetLastIteratorEdges() = 0;
 
     virtual Path MinimumPath(Node start, Node finish) = 0;
     virtual unique_ptr<Graph> MinimumSpanningTree() = 0;

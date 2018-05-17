@@ -5,6 +5,7 @@ using namespace std;
 void AListGraph::AddEdge(Edge const &edge) {
     adjacency_list[edge.GetStartingNode()].emplace_front(Edge(edge));
     adjacency_list[edge.GetStartingNode()].unique();
+    this->edges.emplace_back(Edge(edge));
     if (!IsDirected()) {
         adjacency_list[edge.GetFinishingNode()].emplace_front(Edge(edge));
         adjacency_list[edge.GetFinishingNode()].unique();
@@ -32,9 +33,19 @@ Weight AListGraph::GetEdgeWeight(Node start, Node finish) {
 bool AListGraph::IsDirected() {
 
 }
-bool AListGraph::IsWeighted() {
 
+unsigned long AListGraph::GetNumberOfNodes() {
+    return adjacency_list.size();
 }
+
+vector<Edge>::iterator AListGraph::GetFirstIteratorEdges() {
+    return edges.begin();
+}
+
+vector<Edge>::iterator AListGraph::GetLastIteratorEdges() {
+    return edges.end();
+}
+
 
 Path AListGraph::MinimumPath(Node start, Node finish) {
 

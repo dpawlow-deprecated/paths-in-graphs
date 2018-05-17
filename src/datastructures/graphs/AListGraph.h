@@ -8,7 +8,9 @@ using namespace std;
 
 class AListGraph: public Graph {
 private:
-    vector<std::forward_list<Edge>> adjacency_list;
+    vector<forward_list<Edge>> adjacency_list;
+    vector<Edge> edges;
+    bool is_directed;
 
 public:
     void AddEdge(Edge const &edge) override;
@@ -16,7 +18,10 @@ public:
     Weight GetEdgeWeight(Node start, Node finish) override;
 
     bool IsDirected() override;
-    bool IsWeighted() override;
+
+    unsigned long GetNumberOfNodes() override;
+    vector<Edge>::iterator GetFirstIteratorEdges() override;
+    vector<Edge>::iterator GetLastIteratorEdges() override;
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
