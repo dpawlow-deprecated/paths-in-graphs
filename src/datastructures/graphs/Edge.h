@@ -2,7 +2,7 @@
 #define PATHS_IN_GRAPHS_EDGE_H
 
 
-#include "../types/types.h"
+#include "../../types/types.h"
 
 class Edge {
 public:

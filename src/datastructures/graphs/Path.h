@@ -2,7 +2,7 @@
 #define PATHS_IN_GRAPHS_PATH_H
 
 #include <vector>
-#include "../types/types.h"
+#include "../../types/types.h"
 #include "Edge.h"
 
 using namespace std;

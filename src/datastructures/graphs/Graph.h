@@ -2,7 +2,7 @@
 #define PATHS_IN_GRAPHS_GRAPH_H
 
 #include <bits/unique_ptr.h>
-#include "../types/types.h"
+#include "../../types/types.h"
 #include "Path.h"
 
 using namespace std;
