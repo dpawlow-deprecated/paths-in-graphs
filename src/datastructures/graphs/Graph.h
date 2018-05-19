@@ -14,9 +14,9 @@ public:
     virtual bool EdgeInRange(Node start, Node finish) = 0;
     virtual Weight GetEdgeWeight(Node start, Node finish) = 0;
 
-    virtual bool IsDirected() = 0;
+    virtual bool IsDirected() const = 0;
 
-    virtual unsigned long GetNumberOfNodes() = 0;
+    virtual unsigned long GetNumberOfNodes() const = 0;
     virtual vector<Edge>::iterator GetEdgesBeginIterator(Node node) = 0;
     virtual vector<Edge>::iterator GetEdgesEndIterator(Node node) = 0;
 

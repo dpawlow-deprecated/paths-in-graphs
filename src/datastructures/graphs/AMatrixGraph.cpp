@@ -2,34 +2,26 @@
 
 
 AMatrixGraph::AMatrixGraph(unsigned long n_of_nodes, bool is_directed) {
-    AdjacencyRow row = vector(n_of_nodes, MatrixEdge());
-    this->adjacency_matrix = vector(n_of_nodes, row);
+    AdjacencyRow row = vector<MatrixEdge>(n_of_nodes, MatrixEdge());
+    this->adjacency_matrix = vector<AdjacencyRow>(n_of_nodes, row);
     this->is_directed = is_directed;
 }
 
-AMatrixGraph::AMatrixGraph(Graph graph) {
+AMatrixGraph::AMatrixGraph(Graph &graph) {
     this->is_directed = graph.IsDirected();
 
     AMatrixGraph new_graph = AMatrixGraph(graph.GetNumberOfNodes(), graph.IsDirected());
-    auto edges_iterator = graph.GetEdgesBeginIterator(0);
-
-    while (edges_iter.)
-
-    for (Edge &edge: graph. {
-        this->AddEdge(edge);
+    for (unsigned long i = 0; i < graph.GetNumberOfNodes(); i++) {
+        for(auto it = graph.GetEdgesBeginIterator(i); it != graph.GetEdgesBeginIterator(i); ++it) {
+            AddEdge(*it);
+        }
     }
 }
-
 
 void AMatrixGraph::AddEdge(Edge const &edge) {
     if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists.");
     }
-
-    if (edge.GetStartingNode() >= ) {
-
-    }
-
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()] = MatrixEdge(edge.GetWeight());
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
@@ -54,7 +46,7 @@ bool AMatrixGraph::EdgeInRange(Node start, Node finish) {
     return start < GetNumberOfNodes() && finish < GetNumberOfNodes();
 }
 
-bool AMatrixGraph::IsDirected() {
+bool AMatrixGraph::IsDirected() const {
     return is_directed;
 }
 
@@ -66,6 +58,6 @@ Weight AMatrixGraph::GetEdgeWeight(Node start, Node finish) {
     }
 }
 
-unsigned long AMatrixGraph::GetNumberOfNodes() {
+unsigned long AMatrixGraph::GetNumberOfNodes() const {
     return adjacency_matrix.size();
-};
+}

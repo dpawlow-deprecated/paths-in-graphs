@@ -8,19 +8,21 @@ using namespace std;
 
 class AListGraph: public Graph {
 private:
-    vector<forward_list<Edge>> adjacency_list;
-    vector<Edge> edges;
+    vector<vector<Edge>> adjacency_list;
     bool is_directed;
 
 public:
+    AListGraph(unsigned long n_of_nodes, bool is_directed);
+    AListGraph(Graph const &graph);
+
     void AddEdge(Edge const &edge) override;
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;
 
-    bool IsDirected() override;
+    bool IsDirected() const override;
 
-    unsigned long GetNumberOfNodes() override;
+    unsigned long GetNumberOfNodes() const override;
     vector<Edge>::iterator GetEdgesBeginIterator(Node node) override;
     vector<Edge>::iterator GetEdgesEndIterator(Node node) override;
 
