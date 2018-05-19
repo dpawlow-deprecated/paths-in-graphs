@@ -1,9 +1,35 @@
 #include "AMatrixGraph.h"
 
+
+AMatrixGraph::AMatrixGraph(unsigned long n_of_nodes, bool is_directed) {
+    AdjacencyRow row = vector(n_of_nodes, MatrixEdge());
+    this->adjacency_matrix = vector(n_of_nodes, row);
+    this->is_directed = is_directed;
+}
+
+AMatrixGraph::AMatrixGraph(Graph graph) {
+    this->is_directed = graph.IsDirected();
+
+    AMatrixGraph new_graph = AMatrixGraph(graph.GetNumberOfNodes(), graph.IsDirected());
+    auto edges_iterator = graph.GetEdgesBeginIterator(0);
+
+    while (edges_iter.)
+
+    for (Edge &edge: graph. {
+        this->AddEdge(edge);
+    }
+}
+
+
 void AMatrixGraph::AddEdge(Edge const &edge) {
     if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists.");
     }
+
+    if (edge.GetStartingNode() >= ) {
+
+    }
+
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()] = MatrixEdge(edge.GetWeight());
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
@@ -17,15 +43,19 @@ Path AMatrixGraph::MinimumPath(Node start, Node finish){
 };
 
 bool AMatrixGraph::EdgeExists(Node start, Node finish) {
-    return adjacency_matrix[start][finish].is_connected;
+    if (EdgeInRange(start, finish)) {
+        return adjacency_matrix[start][finish].not_null;
+    } else {
+        throw logic_error("Edge out of range");
+    }
+}
+
+bool AMatrixGraph::EdgeInRange(Node start, Node finish) {
+    return start < GetNumberOfNodes() && finish < GetNumberOfNodes();
 }
 
 bool AMatrixGraph::IsDirected() {
     return is_directed;
-}
-
-bool AMatrixGraph::IsWeighted() {
-    return is_weighted;
 }
 
 Weight AMatrixGraph::GetEdgeWeight(Node start, Node finish) {
@@ -35,3 +65,7 @@ Weight AMatrixGraph::GetEdgeWeight(Node start, Node finish) {
         throw logic_error("Edge doesn't exist.");
     }
 }
+
+unsigned long AMatrixGraph::GetNumberOfNodes() {
+    return adjacency_matrix.size();
+};

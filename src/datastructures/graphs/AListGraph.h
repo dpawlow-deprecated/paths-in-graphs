@@ -15,13 +15,14 @@ private:
 public:
     void AddEdge(Edge const &edge) override;
     bool EdgeExists(Node start, Node finish) override;
+    bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;
 
     bool IsDirected() override;
 
     unsigned long GetNumberOfNodes() override;
-    vector<Edge>::iterator GetFirstIteratorEdges() override;
-    vector<Edge>::iterator GetLastIteratorEdges() override;
+    vector<Edge>::iterator GetEdgesBeginIterator(Node node) override;
+    vector<Edge>::iterator GetEdgesEndIterator(Node node) override;
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;

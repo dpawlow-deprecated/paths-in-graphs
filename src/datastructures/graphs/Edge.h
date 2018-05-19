@@ -14,6 +14,7 @@ public:
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
 
+
 private:
     Node start;
     Node finish;

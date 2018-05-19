@@ -38,12 +38,8 @@ unsigned long AListGraph::GetNumberOfNodes() {
     return adjacency_list.size();
 }
 
-vector<Edge>::iterator AListGraph::GetFirstIteratorEdges() {
-    return edges.begin();
-}
-
-vector<Edge>::iterator AListGraph::GetLastIteratorEdges() {
-    return edges.end();
+vector<Edge>::iterator AListGraph::GetEdgesBeginIterator(Node node) {
+    return (forward_list<Edge>::iterator) adjacency_list[node].begin();
 }
 
 
