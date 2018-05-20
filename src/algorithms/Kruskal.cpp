@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Kruskal.h"
 #include "../datastructures/UnionDisjointSet.h"
 
