@@ -12,7 +12,7 @@ AMatrixGraph::AMatrixGraph(Graph &graph) {
 
     AMatrixGraph new_graph = AMatrixGraph(graph.GetNumberOfNodes(), graph.IsDirected());
     for (unsigned long i = 0; i < graph.GetNumberOfNodes(); i++) {
-        for(auto it = graph.GetEdgesBeginIterator(i); it != graph.GetEdgesBeginIterator(i); ++it) {
+        for(auto it = graph.BeginEdgesIterator(i); it != graph.BeginEdgesIterator(i); ++it) {
             AddEdge(*it);
         }
     }
