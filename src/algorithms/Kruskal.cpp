@@ -1,16 +1,12 @@
-#ifndef PATHS_IN_GRAPHS_KRUSKAL_H
-#define PATHS_IN_GRAPHS_KRUSKAL_H
-
-#include <algorithm>
-#include "../datastructures/graphs/AListGraph.h"
+#include "Kruskal.h"
 #include "../datastructures/UnionDisjointSet.h"
 
 bool EdgeIsLighter(Edge const &e1, Edge const &e2) {
     return e1.GetWeight() < e2.GetWeight();
 };
 
-AListGraph KruskalPathCompression(Graph &graph) {
-    AListGraph agm = AListGraph(graph.GetNumberOfNodes(), false);
+AListGraph* KruskalPathCompression(Graph &graph) {
+    auto * agm_ptr = new AListGraph(graph.GetNumberOfNodes(), false);
     UnionDisjointSet uds = UnionDisjointSet(graph.GetNumberOfNodes());
 
     vector<Edge> edges;
@@ -26,11 +22,10 @@ AListGraph KruskalPathCompression(Graph &graph) {
 
     for (Edge &e : edges) {
         if (uds.Find(e.GetStartingNode()) != uds.Find(e.GetFinishingNode())) {
-            agm.AddEdge(e);
+            agm_ptr->AddEdge(e);
             uds.Union(e.GetStartingNode(), e.GetFinishingNode());
         }
     }
+
+    return agm_ptr;
 }
-
-
-#endif //PATHS_IN_GRAPHS_KRUSKAL_H
