@@ -23,8 +23,10 @@ public:
     bool IsDirected() const override;
 
     unsigned long GetNumberOfNodes() const override;
-    vector<Edge>::iterator GetEdgesBeginIterator(Node node) override;
-    vector<Edge>::iterator GetEdgesEndIterator(Node node) override;
+    vector<Edge>::iterator BeginEdgesIterator(Node node) override;
+    vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it) override;
+    bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it) override;
+
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;

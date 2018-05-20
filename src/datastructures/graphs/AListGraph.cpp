@@ -54,13 +54,21 @@ unsigned long AListGraph::GetNumberOfNodes() const {
     return adjacency_list.size();
 }
 
-vector<Edge>::iterator AListGraph::GetEdgesBeginIterator(Node node) {
+vector<Edge>::iterator AListGraph::BeginEdgesIterator(Node node) {
     return adjacency_list[node].begin();
 }
 
-vector<Edge>::iterator AListGraph::GetEdgesEndIterator(Node node) {
-    return adjacency_list[node].end();
+vector<Edge>::iterator AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it) {
+    if (!HasNextEdgesIterator(node, it)) {
+        throw logic_error("Doesn't have next iterator");
+    }
+    return it++;
 }
+
+bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
+    return it != adjacency_list[node].end();
+}
+
 
 
 Path AListGraph::MinimumPath(Node start, Node finish) {
