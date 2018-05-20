@@ -19,7 +19,7 @@ AMatrixGraph::AMatrixGraph(Graph &graph) {
 }
 
 void AMatrixGraph::AddEdge(Edge const &edge) {
-    if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists.");
     }
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()] = MatrixEdge(edge.GetWeight());

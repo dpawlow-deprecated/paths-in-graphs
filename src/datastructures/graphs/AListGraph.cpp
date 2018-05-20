@@ -9,7 +9,7 @@ AListGraph::AListGraph(unsigned long n_of_nodes, bool is_directed) {
 AListGraph::AListGraph(Graph const &graph) {}
 
 void AListGraph::AddEdge(Edge const &edge) {
-    if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists");
     }
     adjacency_list[edge.GetStartingNode()].emplace_back(Edge(edge));
@@ -23,7 +23,7 @@ bool AListGraph::EdgeInRange(Node start, Node finish) {
 };
 
 bool AListGraph::EdgeExists(Node start, Node finish) {
-    if (EdgeInRange(start, finish)) {
+    if (!EdgeInRange(start, finish)) {
         throw logic_error("Edge out of range.");
     }
     for (Edge &e : adjacency_list[start]) {
@@ -35,7 +35,7 @@ bool AListGraph::EdgeExists(Node start, Node finish) {
 }
 
 Weight AListGraph::GetEdgeWeight(Node start, Node finish) {
-    if (EdgeInRange(start, finish)) {
+    if (!EdgeInRange(start, finish)) {
         throw logic_error("Edge out of range.");
     }
     for (Edge &e : adjacency_list[start]) {
