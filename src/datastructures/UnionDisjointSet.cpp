@@ -1,12 +1,12 @@
 #include "UnionDisjointSet.h"
 
-UnionDisjointSet::UnionDisjointSet(int n_of_nodes) {
+UnionDisjointSet::UnionDisjointSet(unsigned long n_of_nodes) {
     vector<Node> heights(n_of_nodes, 1);
     this->heights = heights;
 
     vector<Node> parents(n_of_nodes, 0);
     this->parents = parents;
-    for (int i = 0; i < this->parents.size(); i++) {
+    for (unsigned long i = 0; i < this->parents.size(); i++) {
         this->parents[i] = i;
     }
 }
