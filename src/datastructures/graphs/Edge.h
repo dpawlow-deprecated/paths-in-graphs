@@ -14,6 +14,8 @@ public:
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
 
+    bool operator==(Edge const &e);
+
 private:
     Node start;
     Node finish;

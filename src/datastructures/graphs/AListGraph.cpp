@@ -2,19 +2,32 @@
 
 using namespace std;
 
+AListGraph::AListGraph(unsigned long n_of_nodes, bool is_directed) {
+
+}
+
+AListGraph::AListGraph(Graph const &graph) {}
+
 void AListGraph::AddEdge(Edge const &edge) {
-    adjacency_list[edge.GetStartingNode()].emplace_front(Edge(edge));
-    adjacency_list[edge.GetStartingNode()].unique();
-    this->edges.emplace_back(Edge(edge));
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+        throw logic_error("Edge already exists");
+    }
+    adjacency_list[edge.GetStartingNode()].emplace_back(Edge(edge));
     if (!IsDirected()) {
-        adjacency_list[edge.GetFinishingNode()].emplace_front(Edge(edge));
-        adjacency_list[edge.GetFinishingNode()].unique();
+        adjacency_list[edge.GetFinishingNode()].emplace_back(Edge(edge));
     }
 }
 
+bool AListGraph::EdgeInRange(Node start, Node finish) {
+    return start < adjacency_list.size() && finish < adjacency_list.size();
+};
+
 bool AListGraph::EdgeExists(Node start, Node finish) {
-    for (auto it = adjacency_list[start].begin(); it != adjacency_list[start].end(); ++it ) {
-        if (it->GetFinishingNode() == finish) {
+    if (!EdgeInRange(start, finish)) {
+        throw logic_error("Edge out of range.");
+    }
+    for (Edge &e : adjacency_list[start]) {
+        if (e.GetFinishingNode() == finish) {
             return true;
         }
     }
@@ -22,29 +35,40 @@ bool AListGraph::EdgeExists(Node start, Node finish) {
 }
 
 Weight AListGraph::GetEdgeWeight(Node start, Node finish) {
-    for (auto it = adjacency_list[start].begin(); it != adjacency_list[start].end(); ++it ) {
-        if (it->GetFinishingNode() == finish) {
-            return it->GetWeight();
+    if (!EdgeInRange(start, finish)) {
+        throw logic_error("Edge out of range.");
+    }
+    for (Edge &e : adjacency_list[start]) {
+        if (e.GetFinishingNode() == finish) {
+            return e.GetWeight();
         }
     }
     throw logic_error("Edge doesn't exist.");
 }
 
-bool AListGraph::IsDirected() {
-
+bool AListGraph::IsDirected() const {
+    return is_directed;
 }
 
-unsigned long AListGraph::GetNumberOfNodes() {
+unsigned long AListGraph::GetNumberOfNodes() const {
     return adjacency_list.size();
 }
 
-vector<Edge>::iterator AListGraph::GetFirstIteratorEdges() {
-    return edges.begin();
+vector<Edge>::iterator AListGraph::BeginEdgesIterator(Node node) {
+    return adjacency_list[node].begin();
 }
 
-vector<Edge>::iterator AListGraph::GetLastIteratorEdges() {
-    return edges.end();
+vector<Edge>::iterator AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it) {
+    if (!HasNextEdgesIterator(node, it)) {
+        throw logic_error("Doesn't have next iterator");
+    }
+    return it++;
 }
+
+bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
+    return it != adjacency_list[node].end();
+}
+
 
 
 Path AListGraph::MinimumPath(Node start, Node finish) {

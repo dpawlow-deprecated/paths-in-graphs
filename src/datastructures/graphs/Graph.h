@@ -11,13 +11,15 @@ class Graph {
 public:
     virtual void AddEdge(Edge const &edge) = 0;
     virtual bool EdgeExists(Node start, Node finish) = 0;
+    virtual bool EdgeInRange(Node start, Node finish) = 0;
     virtual Weight GetEdgeWeight(Node start, Node finish) = 0;
 
-    virtual bool IsDirected() = 0;
+    virtual bool IsDirected() const = 0;
 
-    virtual unsigned long GetNumberOfNodes() = 0;
-    virtual vector<Edge>::iterator GetFirstIteratorEdges() = 0;
-    virtual vector<Edge>::iterator GetLastIteratorEdges() = 0;
+    virtual unsigned long GetNumberOfNodes() const = 0;
+    virtual vector<Edge>::iterator BeginEdgesIterator(Node node) = 0;
+    virtual vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it) = 0;
+    virtual bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it) = 0;
 
     virtual Path MinimumPath(Node start, Node finish) = 0;
     virtual unique_ptr<Graph> MinimumSpanningTree() = 0;
