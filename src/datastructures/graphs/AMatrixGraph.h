@@ -1,6 +1,7 @@
 #ifndef PATHS_IN_GRAPHS_AMATRIXGRAPH_H
 #define PATHS_IN_GRAPHS_AMATRIXGRAPH_H
 
+#include <iostream>
 #include "Graph.h"
 
 class AMatrixGraph: public Graph {
@@ -41,11 +42,14 @@ public:
     unsigned long GetNumberOfNodes() const override;
 
     vector<Edge>::iterator BeginEdgesIterator(Node node) override;
-    vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it);
-    bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it);
+    vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
+    bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
+
+    void PrintGraph();
+
 };
 
 
