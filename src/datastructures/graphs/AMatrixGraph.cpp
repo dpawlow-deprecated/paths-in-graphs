@@ -32,7 +32,7 @@ void AMatrixGraph::AddEdge(Edge const &edge) {
 Path AMatrixGraph::MinimumPath(Node start, Node finish){
     Path path = Path();
     return path;
-};
+}
 
 bool AMatrixGraph::EdgeExists(Node start, Node finish) {
     if (EdgeInRange(start, finish)) {
