@@ -4,7 +4,7 @@
 Weight* Dijkstra(Graph &graph) {
     std::set<Node > unvisitedNodeSet;
 
-    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+    for(Node n = 0; n < graph.GetNumberOfNodes(); n++) {
         unvisitedNodeSet.insert(n);
     }
 
