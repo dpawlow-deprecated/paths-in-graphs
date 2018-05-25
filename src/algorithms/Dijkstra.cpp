@@ -2,26 +2,25 @@
 #include "Dijkstra.h"
 
 Weight* Dijkstra(Graph &graph) {
-    AListGraph result = AListGraph(graph.GetNumberOfNodes(), graph.IsDirected());
     std::set<Node > unvisitedNodeSet;
 
-    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
-        unvisitedNodeSet.insert(Node(i));
+    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+        unvisitedNodeSet.insert(n);
     }
 
     Weight costToNode [graph.GetNumberOfNodes()];
     costToNode[0] = 0;
 
-    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
-        if (graph.EdgeExists(0, i)) {
-            costToNode[i] = graph.GetEdgeWeight(0, i);
+    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+        if (graph.EdgeExists(0, n)) {
+            costToNode[n] = graph.GetEdgeWeight(0, n);
         }
         else {
-            costToNode[i] = LONG_MAX;
+            costToNode[n] = LONG_MAX;
         }
     }
 
-    while(unvisitedNodeSet.size() != 0) {
+    while(!unvisitedNodeSet.empty()) {
 
         //find node with smallest cost
         Weight smallestWeight = LONG_MAX;
@@ -45,6 +44,7 @@ Weight* Dijkstra(Graph &graph) {
             }
         }
     }
-    
-    return costToNode;
+
+    Weight* result = costToNode;
+    return result;
 }
