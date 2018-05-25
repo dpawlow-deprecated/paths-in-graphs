@@ -26,9 +26,10 @@ void AMatrixGraph::AddEdge(Edge const &edge) {
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
     }
+
 }
 
-Path AMatrixGraph::MinimumPath(Node start, Node finish) {
+Path AMatrixGraph::MinimumPath(Node start, Node finish){
     Path path = Path();
     return path;
 }
@@ -74,9 +75,12 @@ void AMatrixGraph::PrintGraph(){
     for (int i = 0; i < adjacency_matrix.size(); ++i) {
         cout << i << "  | ";
         for (int j = 0; j < adjacency_matrix.size(); ++j) {
-            if(adjacency_matrix[i][j].weight < 10) cout << 0;
+            if(EdgeExists(i,j)){
+            if(adjacency_matrix[i][j].weight < 10  && adjacency_matrix[i][j].weight >=0) cout << 0;
             cout << adjacency_matrix[i][j].weight;
-
+            } else {
+                cout << " -";
+            }
                 cout << " | ";
 
         }

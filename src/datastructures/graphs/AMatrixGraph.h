@@ -12,7 +12,7 @@ private:
         Weight weight;
 
         MatrixEdge(){
-            not_null = true;
+            not_null = false;
             weight = 0;
         }
 
@@ -23,7 +23,7 @@ private:
     };
 
     using AdjacencyRow = vector<MatrixEdge>;
-    using AdjacencyMatrix = vector<AdjacencyRow >;
+    using AdjacencyMatrix = vector<AdjacencyRow>;
 
     AdjacencyMatrix adjacency_matrix;
     bool is_directed;
