@@ -30,7 +30,7 @@ public:
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
 
-    AdjacencyMatrix * GetAdjacencyMatrix();
+    AdjacencyMatrix GetAdjacencyMatrix();
     void PrintGraph();
 
 };

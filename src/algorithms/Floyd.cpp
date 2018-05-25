@@ -1,7 +1,7 @@
 #include "Floyd.h"
 
-void Floyd::floydAlgorithm(AMatrixGraph* matrixGraph) {
-    AdjacencyMatrix &matrix = *matrixGraph->GetAdjacencyMatrix();
+AdjacencyMatrix floydAlgorithm(AMatrixGraph matrixGraph) {
+    AdjacencyMatrix matrix = matrixGraph.GetAdjacencyMatrix();
     unsigned long size = matrix.size();
     for (int k = 0; k < size; k++) {
         for (int i = 0; i < size; i++) {
@@ -12,10 +12,10 @@ void Floyd::floydAlgorithm(AMatrixGraph* matrixGraph) {
             }
         }
     }
+    return matrix;
 }
 
-
-Weight Floyd::minimum(Weight first, Weight second){
+Weight minimum(Weight first, Weight second){
     if(first == 0){
         return second;
     }

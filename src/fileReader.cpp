@@ -1,6 +1,6 @@
 #include "fileReader.h"
 
-AListGraph* fileReader::HiperconectadosReaderToListGraph(string from, bool is_directed){
+AListGraph fileReader::HiperconectadosReaderToListGraph(string from, bool is_directed){
 
     ifstream input_file;
 
@@ -11,11 +11,11 @@ AListGraph* fileReader::HiperconectadosReaderToListGraph(string from, bool is_di
     if (input_file.is_open()) {
 
         input_file >> cant_ciudades;
-        AListGraph* graph = new AListGraph(cant_ciudades, is_directed);
+        AListGraph graph = AListGraph(cant_ciudades, is_directed);
         input_file >> cant_posibles_conexiones;
 
         for (int j = 0; j < cant_posibles_conexiones; ++j) {
-            graph->AddEdge(ObtainNewEdge(input_file));
+            graph.AddEdge(ObtainNewEdge(input_file));
         }
 
         input_file.close();
@@ -24,7 +24,7 @@ AListGraph* fileReader::HiperconectadosReaderToListGraph(string from, bool is_di
 
 }
 
-AMatrixGraph* fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is_directed) {
+AMatrixGraph fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is_directed) {
 
     ifstream input_file;
 
@@ -36,11 +36,11 @@ AMatrixGraph* fileReader::HiperconectadosReaderToMatrixGraph(string from, bool i
     if (input_file.is_open()) {
 
         input_file >> cant_ciudades;
-        AMatrixGraph* graph = new AMatrixGraph(cant_ciudades, is_directed);
+        AMatrixGraph graph = AMatrixGraph(cant_ciudades, is_directed);
         input_file >> cant_posibles_conexiones;
 
         for (int j = 0; j < cant_posibles_conexiones; ++j) {
-            graph->AddEdge(ObtainNewEdge(input_file));
+            graph.AddEdge(ObtainNewEdge(input_file));
         }
 
         input_file.close();
@@ -50,7 +50,7 @@ AMatrixGraph* fileReader::HiperconectadosReaderToMatrixGraph(string from, bool i
 
 }
 
-AListGraph* fileReader::HiperauditadosReaderToListGraph(string from, vector<int> *oil_cost, bool is_directed) {
+AListGraph fileReader::HiperauditadosReaderToListGraph(string from, vector<int> *oil_cost, bool is_directed) {
     ifstream input_file;
 
     input_file.open(from);
@@ -63,7 +63,7 @@ AListGraph* fileReader::HiperauditadosReaderToListGraph(string from, vector<int>
 
         input_file >> cant_ciudades;
         input_file >> cant_posibles_conexiones;
-        AListGraph* graph = new AListGraph(cant_ciudades, is_directed);
+        AListGraph graph = AListGraph(cant_ciudades, is_directed);
         oil_costValues.assign(cant_ciudades, 0);
 
         int city_oil_cost;
@@ -72,7 +72,7 @@ AListGraph* fileReader::HiperauditadosReaderToListGraph(string from, vector<int>
         }
 
         for (int j = 0; j < cant_posibles_conexiones; ++j) {
-            graph->AddEdge(ObtainNewEdge(input_file));
+            graph.AddEdge(ObtainNewEdge(input_file));
         }
 
         input_file.close();
@@ -81,7 +81,7 @@ AListGraph* fileReader::HiperauditadosReaderToListGraph(string from, vector<int>
 
 }
 
-AMatrixGraph* fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<int> *oil_cost, bool is_directed) {
+AMatrixGraph fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<int> *oil_cost, bool is_directed) {
     ifstream input_file;
 
     input_file.open(from);
@@ -94,7 +94,7 @@ AMatrixGraph* fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<
 
         input_file >> cant_ciudades;
         input_file >> cant_posibles_conexiones;
-        AMatrixGraph* graph = new AMatrixGraph(cant_ciudades, is_directed);
+        AMatrixGraph graph = AMatrixGraph(cant_ciudades, is_directed);
         oil_costValues.assign(cant_ciudades, 0);
 
         for (int i = 0; i < cant_ciudades; ++i) {
@@ -102,7 +102,7 @@ AMatrixGraph* fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<
         }
 
         for (int j = 0; j < cant_posibles_conexiones; ++j) {
-            graph->AddEdge(ObtainNewEdge(input_file));
+            graph.AddEdge(ObtainNewEdge(input_file));
         }
 
         input_file.close();

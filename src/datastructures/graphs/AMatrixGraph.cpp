@@ -82,8 +82,8 @@ unsigned long AMatrixGraph::GetNumberOfNodes() const {
     return adjacency_matrix.size();
 }
 
-AdjacencyMatrix * AMatrixGraph::GetAdjacencyMatrix() {
-    return &adjacency_matrix;
+AdjacencyMatrix AMatrixGraph::GetAdjacencyMatrix() {
+    return adjacency_matrix;
 }
 
 vector<Edge>::iterator AMatrixGraph::BeginEdgesIterator(Node node){

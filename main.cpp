@@ -28,10 +28,11 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    AMatrixGraph* aMatrixGraph;
-    AListGraph* listGraph;
+    AMatrixGraph aMatrixGraph = AMatrixGraph(0,true);
+    AListGraph listGraph = AListGraph(0,true);
 
     string strFile = getActualDir() + file;
+
 
     if (selector == 1) {
         listGraph = fileReader::HiperconectadosReaderToListGraph(
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
         aMatrixGraph = fileReader::HiperconectadosReaderToMatrixGraph(
                 strFile,
                 is_directed);
-        aMatrixGraph->PrintGraph();
+        aMatrixGraph.PrintGraph();
     }
 
 
@@ -58,6 +59,6 @@ int main(int argc, char *argv[]) {
         aMatrixGraph = fileReader::HiperauditadosReaderToMatrixGraph(
                 strFile, oil_cost,
                 is_directed);
-        aMatrixGraph->PrintGraph();
+        aMatrixGraph.PrintGraph();
     }
 }
