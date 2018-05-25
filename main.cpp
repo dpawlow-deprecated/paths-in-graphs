@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     if (argc >= 1 and argc <= 4) {
         selector = atoi(argv[1]);
-        is_directed = (bool) atoi(argv[2]);
+        is_directed = argv[2];
         file = argv[3];
     } else {
         cout << "Faltan parametros" << endl;
@@ -46,8 +46,6 @@ int main(int argc, char *argv[]) {
                 is_directed);
         aMatrixGraph.PrintGraph();
     }
-
-    AdjacencyMatrix adjacencyMatrix = FloydAlgorithm(aMatrixGraph);
 
     vector<int> *oil_cost = new vector<int>;
     if (selector == 3) {

@@ -19,7 +19,7 @@ AMatrixGraph::AMatrixGraph(Graph &graph) {
 }
 
 void AMatrixGraph::AddEdge(Edge const &edge) {
-    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+    if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists.");
     }
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()] = MatrixEdge(edge.GetWeight());
@@ -75,9 +75,12 @@ void AMatrixGraph::PrintGraph(){
     for (int i = 0; i < adjacency_matrix.size(); ++i) {
         cout << i << "  | ";
         for (int j = 0; j < adjacency_matrix.size(); ++j) {
+            if(EdgeExists(i,j)){
             if(adjacency_matrix[i][j].weight < 10  && adjacency_matrix[i][j].weight >=0) cout << 0;
             cout << adjacency_matrix[i][j].weight;
-
+            } else {
+                cout << " -";
+            }
                 cout << " | ";
 
         }
@@ -87,10 +90,6 @@ void AMatrixGraph::PrintGraph(){
 
 unsigned long AMatrixGraph::GetNumberOfNodes() const {
     return adjacency_matrix.size();
-}
-
-AdjacencyMatrix AMatrixGraph::GetAdjacencyMatrix() {
-    return adjacency_matrix;
 }
 
 vector<Edge>::iterator AMatrixGraph::BeginEdgesIterator(Node node){

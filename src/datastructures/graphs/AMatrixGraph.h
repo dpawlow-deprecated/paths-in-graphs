@@ -7,6 +7,24 @@
 class AMatrixGraph: public Graph {
 
 private:
+    struct MatrixEdge {
+        bool not_null;
+        Weight weight;
+
+        MatrixEdge(){
+            not_null = false;
+            weight = 0;
+        }
+
+        explicit MatrixEdge(Weight w) {
+            not_null = true;
+            weight = w;
+        }
+    };
+
+    using AdjacencyRow = vector<MatrixEdge>;
+    using AdjacencyMatrix = vector<AdjacencyRow>;
+
     AdjacencyMatrix adjacency_matrix;
     bool is_directed;
 
@@ -30,7 +48,6 @@ public:
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
 
-    AdjacencyMatrix GetAdjacencyMatrix();
     void PrintGraph();
 
 };

@@ -1,37 +1,27 @@
 #include "Floyd.h"
 
-AdjacencyMatrix FloydAlgorithm(AMatrixGraph matrixGraph) {
-    AdjacencyMatrix matrix = matrixGraph.GetAdjacencyMatrix();
-    unsigned long size = matrix.size();
+AMatrixGraph FloydAlgorithm(AMatrixGraph &matrixG) {
+    AMatrixGraph matrixGraph = matrixG;
+    unsigned long size = matrixGraph.GetNumberOfNodes();
     for (int k = 0; k < size; k++) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (i != j && matrix[i][k].not_null && matrix[k][j].not_null) {
-                    matrix[i][j].weight = minimum(matrix[i][j].weight, matrix[i][k].weight + matrix[k][j].weight);
+                if (i != j && k != j && matrixGraph.EdgeExists(i,k) && matrixGraph.EdgeExists(k,j)) {
+                    Weight peso = matrixGraph.GetEdgeWeight(i,k);
+                    Weight peso2 = matrixGraph.GetEdgeWeight(k,j);
+                    if(matrixGraph.EdgeExists(i,j)){
+                        Weight peso3 = matrixGraph.GetEdgeWeight(i,j);
+                        matrixGraph.SetEdgeWeight(i,j, minimum(matrixGraph.GetEdgeWeight(i,j), matrixGraph.GetEdgeWeight(i,k) +  matrixGraph.GetEdgeWeight(k,j)));
+                    } else {
+                        matrixGraph.AddEdge(Edge(i,j, matrixGraph.GetEdgeWeight(i,k) +  matrixGraph.GetEdgeWeight(k,j)));
+                    }
                 }
             }
         }
     }
 
-
-    cout << "     " ;
-    for (int i = 0; i < matrix.size(); ++i) {
-        cout << i << "  | ";
-    }
-    cout << endl;
-    for (int i = 0; i < matrix.size(); ++i) {
-        cout << i << "  | ";
-        for (int j = 0; j < matrix.size(); ++j) {
-            if(matrix[i][j].weight < 10 && matrix[i][j].weight >=0) cout << 0;
-            cout << matrix[i][j].weight;
-
-            cout << " | ";
-
-        }
-        cout << endl;
-    }
-
-    return matrix;
+    matrixGraph.PrintGraph();
+    return matrixGraph;
 }
 
 Weight minimum(Weight first, Weight second){

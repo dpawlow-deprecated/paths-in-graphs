@@ -5,8 +5,8 @@ AListGraph fileReader::HiperconectadosReaderToListGraph(string from, bool is_dir
     ifstream input_file;
 
     input_file.open(from);
-    int cant_ciudades = 0;
-    int cant_posibles_conexiones = 0;
+    Node cant_ciudades = 0;
+    unsigned long cant_posibles_conexiones = 0;
 
     if (input_file.is_open()) {
 
@@ -29,8 +29,8 @@ AMatrixGraph fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is
     ifstream input_file;
 
     input_file.open(from);
-    int cant_ciudades = 0;
-    int cant_posibles_conexiones = 0;
+    Node cant_ciudades = 0;
+    unsigned long cant_posibles_conexiones = 0;
 
 
     if (input_file.is_open()) {
@@ -54,8 +54,8 @@ AListGraph fileReader::HiperauditadosReaderToListGraph(string from, vector<int> 
     ifstream input_file;
 
     input_file.open(from);
-    int cant_ciudades = 0;
-    int cant_posibles_conexiones = 0;
+    Node cant_ciudades = 0;
+    unsigned long cant_posibles_conexiones = 0;
 
     vector<int>& oil_costValues = *oil_cost;
 
@@ -85,8 +85,8 @@ AMatrixGraph fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<i
     ifstream input_file;
 
     input_file.open(from);
-    int cant_ciudades = 0;
-    int cant_posibles_conexiones = 0;
+    Node cant_ciudades = 0;
+    unsigned long cant_posibles_conexiones = 0;
 
     vector<int>& oil_costValues = *oil_cost;
 

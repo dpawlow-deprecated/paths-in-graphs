@@ -5,6 +5,6 @@
 #include "../datastructures/graphs/AMatrixGraph.h"
 
 Weight minimum(Weight first, Weight second);
-AdjacencyMatrix FloydAlgorithm(AMatrixGraph matrixGraph);
+AMatrixGraph FloydAlgorithm(AMatrixGraph &matrixGraph);
 
 #endif //PATHS_IN_GRAPHS_FLOYD_H
