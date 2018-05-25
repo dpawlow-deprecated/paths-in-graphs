@@ -26,13 +26,12 @@ void AMatrixGraph::AddEdge(Edge const &edge) {
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
     }
-
 }
 
-Path AMatrixGraph::MinimumPath(Node start, Node finish){
+Path AMatrixGraph::MinimumPath(Node start, Node finish) {
     Path path = Path();
     return path;
-};
+}
 
 bool AMatrixGraph::EdgeExists(Node start, Node finish) {
     if (EdgeInRange(start, finish)) {
@@ -55,6 +54,14 @@ Weight AMatrixGraph::GetEdgeWeight(Node start, Node finish) {
         return adjacency_matrix[start][finish].weight;
     } else {
         throw logic_error("Edge doesn't exist.");
+    }
+}
+
+void AMatrixGraph::SetEdgeWeight(Node start, Node finish, Weight weight){
+    if (!EdgeExists(start, finish)) {
+        throw logic_error("Edge doesn't exist.");
+    } else {
+        this->adjacency_matrix[start][finish].weight = weight;
     }
 }
 
