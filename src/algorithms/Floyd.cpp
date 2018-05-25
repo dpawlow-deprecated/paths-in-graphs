@@ -7,8 +7,6 @@ AMatrixGraph FloydAlgorithm(AMatrixGraph &matrixG) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (i != j && k != j && matrixGraph.EdgeExists(i,k) && matrixGraph.EdgeExists(k,j)) {
-                    Weight peso = matrixGraph.GetEdgeWeight(i,k);
-                    Weight peso2 = matrixGraph.GetEdgeWeight(k,j);
                     if(matrixGraph.EdgeExists(i,j)){
                         Weight peso3 = matrixGraph.GetEdgeWeight(i,j);
                         matrixGraph.SetEdgeWeight(i,j, minimum(matrixGraph.GetEdgeWeight(i,j), matrixGraph.GetEdgeWeight(i,k) +  matrixGraph.GetEdgeWeight(k,j)));
@@ -19,8 +17,6 @@ AMatrixGraph FloydAlgorithm(AMatrixGraph &matrixG) {
             }
         }
     }
-
-    matrixGraph.PrintGraph();
     return matrixGraph;
 }
 
