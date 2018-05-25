@@ -4,6 +4,6 @@
 
 #include "../datastructures/graphs/AListGraph.h"
 
-AListGraph& Dijkstra(Graph &graph);
+Weight* Dijkstra(Graph &graph);
 
 #endif //PATHS_IN_GRAPHS_DIJKSTRA_H
