@@ -28,3 +28,10 @@ Node Edge::GetStartingNode() const {
 Node Edge::GetFinishingNode() const {
     return this->finish;
 }
+
+bool Edge::operator==(Edge const &e) {
+    bool answer = this->GetStartingNode() == e.GetStartingNode();
+    answer &= this->GetFinishingNode() == e.GetFinishingNode();
+    answer &= this->GetWeight() == e.GetWeight();
+    return answer;
+}

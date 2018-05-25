@@ -2,7 +2,7 @@
 #define PATHS_IN_GRAPHS_EDGE_H
 
 
-#include "../types/types.h"
+#include "../../types/types.h"
 
 class Edge {
 public:
@@ -10,10 +10,11 @@ public:
     Edge(Node start, Node finish);
     Edge(Node start, Node finish, Weight weight);
 
-
     Weight GetWeight() const;
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
+
+    bool operator==(Edge const &e);
 
 private:
     Node start;
