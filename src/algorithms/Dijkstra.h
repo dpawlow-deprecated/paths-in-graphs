@@ -2,8 +2,8 @@
 #define PATHS_IN_GRAPHS_DIJKSTRA_H
 
 
-class Dijkstra {
-};
+#include "../datastructures/graphs/AListGraph.h"
 
+AListGraph& Dijkstra(Graph &graph);
 
 #endif //PATHS_IN_GRAPHS_DIJKSTRA_H
