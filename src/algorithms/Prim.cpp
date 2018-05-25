@@ -6,7 +6,7 @@ AListGraph& Prim(Graph &graph) {
     AListGraph result = AListGraph(graph.GetNumberOfNodes(), graph.IsDirected());
     std::set<Node > unvisitedNodeSet;
 
-    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+    for(Node n = 0; n < graph.GetNumberOfNodes(); n++) {
         unvisitedNodeSet.insert(n);
     }
 
