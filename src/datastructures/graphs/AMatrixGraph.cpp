@@ -96,7 +96,7 @@ void AMatrixGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it){
 
 }
 
-bool AMatrixGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator &it){
+bool AMatrixGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it){
 
 }
 
