@@ -58,6 +58,7 @@ Weight AMatrixGraph::GetEdgeWeight(Node start, Node finish) {
     }
 }
 
+
 void AMatrixGraph::PrintGraph(){
     cout << "     " ;
     for (int i = 0; i < adjacency_matrix.size(); ++i) {
@@ -67,7 +68,7 @@ void AMatrixGraph::PrintGraph(){
     for (int i = 0; i < adjacency_matrix.size(); ++i) {
         cout << i << "  | ";
         for (int j = 0; j < adjacency_matrix.size(); ++j) {
-            if(adjacency_matrix[i][j].weight < 10) cout << 0;
+            if(adjacency_matrix[i][j].weight < 10 && adjacency_matrix[i][j].weight >= 0) cout << 0;
             cout << adjacency_matrix[i][j].weight;
 
                 cout << " | ";
@@ -79,6 +80,10 @@ void AMatrixGraph::PrintGraph(){
 
 unsigned long AMatrixGraph::GetNumberOfNodes() const {
     return adjacency_matrix.size();
+}
+
+AdjacencyMatrix * AMatrixGraph::GetAdjacencyMatrix() {
+    return &adjacency_matrix;
 }
 
 vector<Edge>::iterator AMatrixGraph::BeginEdgesIterator(Node node){
@@ -95,3 +100,5 @@ bool AMatrixGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it){
 unique_ptr<Graph> AMatrixGraph::MinimumSpanningTree(){
 
 }
+
+

@@ -4,6 +4,7 @@
 #include <cstring>
 #include <zconf.h>
 #include "src/datastructures/graphs/AListGraph.h"
+#include "src/algorithms/Floyd.h"
 
 string getActualDir(){
     char wd[256];
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]) {
     bool is_directed;
     string file;
 
-    if (argc >= 1) {
+    if (argc >= 1 and argc <= 4) {
         selector = atoi(argv[1]);
         is_directed = (bool) atoi(argv[2]);
         file = argv[3];
@@ -27,9 +28,8 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    // Leer el archivo del tercer argumento
-    AMatrixGraph aMatrixGraph = AMatrixGraph(0, true);
-    AListGraph listGraph = AListGraph(0, true);
+    AMatrixGraph* aMatrixGraph;
+    AListGraph* listGraph;
 
     string strFile = getActualDir() + file;
 
@@ -43,21 +43,21 @@ int main(int argc, char *argv[]) {
         aMatrixGraph = fileReader::HiperconectadosReaderToMatrixGraph(
                 strFile,
                 is_directed);
-        aMatrixGraph.PrintGraph();
+        aMatrixGraph->PrintGraph();
     }
 
 
-    vector<int> *oilCost = new vector<int>;
+    vector<int> *oil_cost = new vector<int>;
     if (selector == 3) {
         listGraph = fileReader::HiperauditadosReaderToListGraph(
-                strFile, oilCost,
+                strFile, oil_cost,
                 is_directed);
     }
 
     if (selector == 4) {
         aMatrixGraph = fileReader::HiperauditadosReaderToMatrixGraph(
-                strFile, oilCost,
+                strFile, oil_cost,
                 is_directed);
-        aMatrixGraph.PrintGraph();
+        aMatrixGraph->PrintGraph();
     }
 }

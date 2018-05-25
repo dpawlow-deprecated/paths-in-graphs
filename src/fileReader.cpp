@@ -1,21 +1,21 @@
 #include "fileReader.h"
 
-AListGraph fileReader::HiperconectadosReaderToListGraph(string from, bool is_directed){
+AListGraph* fileReader::HiperconectadosReaderToListGraph(string from, bool is_directed){
 
     ifstream inputFile;
 
     inputFile.open(from);
-    int cantCiudades = 0;
-    int cantPosiblesConexiones = 0;
+    int cant_ciudades = 0;
+    int cant_posibles_conexiones = 0;
 
     if (inputFile.is_open()) {
 
-        inputFile >> cantCiudades;
-        AListGraph graph = AListGraph(cantCiudades, is_directed);
-        inputFile >> cantPosiblesConexiones;
+        inputFile >> cant_ciudades;
+        AListGraph* graph = new AListGraph(cant_ciudades, is_directed);
+        inputFile >> cant_posibles_conexiones;
 
-        for (int j = 0; j < cantPosiblesConexiones; ++j) {
-            graph.AddEdge(obtainNewEdge(inputFile));
+        for (int j = 0; j < cant_posibles_conexiones; ++j) {
+            graph->AddEdge(obtainNewEdge(inputFile));
         }
 
         inputFile.close();
@@ -24,23 +24,23 @@ AListGraph fileReader::HiperconectadosReaderToListGraph(string from, bool is_dir
 
 }
 
-AMatrixGraph fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is_directed) {
+AMatrixGraph* fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is_directed) {
 
     ifstream inputFile;
 
     inputFile.open(from);
-    int cantCiudades = 0;
-    int cantPosiblesConexiones = 0;
+    int cant_ciudades = 0;
+    int cant_posibles_conexiones = 0;
 
 
     if (inputFile.is_open()) {
 
-        inputFile >> cantCiudades;
-        AMatrixGraph graph = AMatrixGraph(cantCiudades, is_directed);
-        inputFile >> cantPosiblesConexiones;
+        inputFile >> cant_ciudades;
+        AMatrixGraph* graph = new AMatrixGraph(cant_ciudades, is_directed);
+        inputFile >> cant_posibles_conexiones;
 
-        for (int j = 0; j < cantPosiblesConexiones; ++j) {
-            graph.AddEdge(obtainNewEdge(inputFile));
+        for (int j = 0; j < cant_posibles_conexiones; ++j) {
+            graph->AddEdge(obtainNewEdge(inputFile));
         }
 
         inputFile.close();
@@ -50,29 +50,29 @@ AMatrixGraph fileReader::HiperconectadosReaderToMatrixGraph(string from, bool is
 
 }
 
-AListGraph fileReader::HiperauditadosReaderToListGraph(string from, vector<int> *oilCost, bool is_directed) {
+AListGraph* fileReader::HiperauditadosReaderToListGraph(string from, vector<int> *oil_cost, bool is_directed) {
     ifstream inputFile;
 
     inputFile.open(from);
-    int cantCiudades = 0;
-    int cantPosiblesConexiones = 0;
+    int cant_ciudades = 0;
+    int cant_posibles_conexiones = 0;
 
-    vector<int>& oilCostValues = *oilCost;
+    vector<int>& oil_costValues = *oil_cost;
 
     if (inputFile.is_open()) {
 
-        inputFile >> cantCiudades;
-        inputFile >> cantPosiblesConexiones;
-        AListGraph graph = AListGraph(cantCiudades, is_directed);
-        oilCostValues.assign(cantCiudades, 0);
+        inputFile >> cant_ciudades;
+        inputFile >> cant_posibles_conexiones;
+        AListGraph* graph = new AListGraph(cant_ciudades, is_directed);
+        oil_costValues.assign(cant_ciudades, 0);
 
-        int cityOilCost;
-        for (int i = 0; i < cantCiudades; ++i) {
-            inputFile >> oilCostValues[i];
+        int city_oil_cost;
+        for (int i = 0; i < cant_ciudades; ++i) {
+            inputFile >> oil_costValues[i];
         }
 
-        for (int j = 0; j < cantPosiblesConexiones; ++j) {
-            graph.AddEdge(obtainNewEdge(inputFile));
+        for (int j = 0; j < cant_posibles_conexiones; ++j) {
+            graph->AddEdge(obtainNewEdge(inputFile));
         }
 
         inputFile.close();
@@ -81,28 +81,28 @@ AListGraph fileReader::HiperauditadosReaderToListGraph(string from, vector<int> 
 
 }
 
-AMatrixGraph fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<int> *oilCost, bool is_directed) {
+AMatrixGraph* fileReader::HiperauditadosReaderToMatrixGraph(string from, vector<int> *oil_cost, bool is_directed) {
     ifstream inputFile;
 
     inputFile.open(from);
-    int cantCiudades = 0;
-    int cantPosiblesConexiones = 0;
+    int cant_ciudades = 0;
+    int cant_posibles_conexiones = 0;
 
-    vector<int>& oilCostValues = *oilCost;
+    vector<int>& oil_costValues = *oil_cost;
 
     if (inputFile.is_open()) {
 
-        inputFile >> cantCiudades;
-        inputFile >> cantPosiblesConexiones;
-        AMatrixGraph graph = AMatrixGraph(cantCiudades, is_directed);
-        oilCostValues.assign(cantCiudades, 0);
+        inputFile >> cant_ciudades;
+        inputFile >> cant_posibles_conexiones;
+        AMatrixGraph* graph = new AMatrixGraph(cant_ciudades, is_directed);
+        oil_costValues.assign(cant_ciudades, 0);
 
-        for (int i = 0; i < cantCiudades; ++i) {
-            inputFile >> oilCostValues[i];
+        for (int i = 0; i < cant_ciudades; ++i) {
+            inputFile >> oil_costValues[i];
         }
 
-        for (int j = 0; j < cantPosiblesConexiones; ++j) {
-            graph.AddEdge(obtainNewEdge(inputFile));
+        for (int j = 0; j < cant_posibles_conexiones; ++j) {
+            graph->AddEdge(obtainNewEdge(inputFile));
         }
 
         inputFile.close();
