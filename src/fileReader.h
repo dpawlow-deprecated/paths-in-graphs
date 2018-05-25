@@ -12,10 +12,10 @@
 
 class fileReader {
 public:
-    static void HiperconectadosReader(string from, AListGraph graph, bool is_directed);
-    static void HiperconectadosReader(string from, AMatrixGraph graph, bool is_directed);
-    static vector<int> HiperauditadosReader(string from, AListGraph graph, bool is_directed);
-    static vector<int> HiperauditadosReader(string from, AMatrixGraph graph, bool is_directed);
+    static AListGraph HiperconectadosReaderToListGraph(string from, bool is_directed);
+    static AMatrixGraph HiperconectadosReaderToMatrixGraph(string from, bool is_directed);
+    static AListGraph HiperauditadosReaderToListGraph(string from, vector<int> *oilCost, bool is_directed);
+    static AMatrixGraph HiperauditadosReaderToMatrixGraph(string from, vector<int> *oilCost, bool is_directed);
     static Edge obtainNewEdge(ifstream& inputFile);
 };
 
