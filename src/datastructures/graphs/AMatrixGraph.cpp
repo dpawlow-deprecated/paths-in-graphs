@@ -91,11 +91,12 @@ unsigned long AMatrixGraph::GetNumberOfNodes() const {
 vector<Edge>::iterator AMatrixGraph::BeginEdgesIterator(Node node){
 
 }
-vector<Edge>::iterator AMatrixGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it){
+
+void AMatrixGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it){
 
 }
 
-bool AMatrixGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it){
+bool AMatrixGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator &it){
 
 }
 

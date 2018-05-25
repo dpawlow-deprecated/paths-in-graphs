@@ -60,14 +60,14 @@ vector<Edge>::iterator AListGraph::BeginEdgesIterator(Node node) {
     return adjacency_list[node].begin();
 }
 
-vector<Edge>::iterator AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it) {
+void AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it) {
     if (!HasNextEdgesIterator(node, it)) {
         throw logic_error("Doesn't have next iterator");
     }
-    return it++;
+    advance(it, 1);
 }
 
-bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
+bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator &it) {
     return it != adjacency_list[node].end();
 }
 

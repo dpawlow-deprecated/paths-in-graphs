@@ -42,8 +42,8 @@ public:
     unsigned long GetNumberOfNodes() const override;
 
     vector<Edge>::iterator BeginEdgesIterator(Node node) override;
-    vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
-    bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
+    void NextEdgesIterator(Node node, vector<Edge>::iterator &it) override ;
+    bool HasNextEdgesIterator(Node node, vector<Edge>::iterator &it) override ;
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
