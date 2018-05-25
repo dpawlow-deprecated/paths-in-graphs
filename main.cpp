@@ -47,6 +47,7 @@ int main(int argc, char *argv[]) {
         aMatrixGraph.PrintGraph();
     }
 
+    AdjacencyMatrix adjacencyMatrix = FloydAlgorithm(aMatrixGraph);
 
     vector<int> *oil_cost = new vector<int>;
     if (selector == 3) {

@@ -118,4 +118,3 @@ Edge fileReader::ObtainNewEdge(ifstream& input_file) {
     input_file >> edge_weight;
     return Edge(edge_start, edge_finish, edge_weight);
 }
-
