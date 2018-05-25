@@ -29,7 +29,6 @@ private:
     bool is_directed;
 
 public:
-
     AMatrixGraph(unsigned long n_of_nodes, bool is_directed);
     explicit AMatrixGraph(Graph &graph);
 
@@ -37,6 +36,7 @@ public:
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;
+    void SetEdgeWeight(Node start, Node finish, Weight weight);
 
     bool IsDirected() const override;
     unsigned long GetNumberOfNodes() const override;
