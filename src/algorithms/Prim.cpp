@@ -6,8 +6,8 @@ AListGraph& Prim(Graph &graph) {
     AListGraph result = AListGraph(graph.GetNumberOfNodes(), graph.IsDirected());
     std::set<Node > unvisitedNodeSet;
 
-    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
-        unvisitedNodeSet.insert(Node(i));
+    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+        unvisitedNodeSet.insert(n);
     }
 
     Weight costToNode [graph.GetNumberOfNodes()];
@@ -15,14 +15,14 @@ AListGraph& Prim(Graph &graph) {
 
     Edge bestEdges [graph.GetNumberOfNodes()];
 
-    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
-        if (graph.EdgeExists(0, i)) {
-            Weight weight = graph.GetEdgeWeight(0, i);
-            costToNode[i] = weight;
-            bestEdges[i] = Edge(0, i, weight);
+    for(Node n = 1; n < graph.GetNumberOfNodes(); n++) {
+        if (graph.EdgeExists(0, n)) {
+            Weight weight = graph.GetEdgeWeight(0, n);
+            costToNode[n] = weight;
+            bestEdges[n] = Edge(0, n, weight);
         }
         else {
-            costToNode[i] = LONG_MAX;
+            costToNode[n] = LONG_MAX;
         }
     }
 
