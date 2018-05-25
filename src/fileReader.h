@@ -1,7 +1,3 @@
-//
-// Created by guido on 22/05/18.
-//
-
 #ifndef PATHS_IN_GRAPHS_FILEREADER_H
 #define PATHS_IN_GRAPHS_FILEREADER_H
 
