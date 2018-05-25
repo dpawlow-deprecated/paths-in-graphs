@@ -13,9 +13,13 @@ AListGraph& Prim(Graph &graph) {
     Weight costToNode [graph.GetNumberOfNodes()];
     costToNode[0] = 0;
 
+    Edge bestEdges [graph.GetNumberOfNodes()];
+
     for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
         if (graph.EdgeExists(0, i)) {
-            costToNode[i] = graph.GetEdgeWeight(0, i);
+            Weight weight = graph.GetEdgeWeight(0, i);
+            costToNode[i] = weight;
+            bestEdges[i] = Edge(0, i, weight);
         }
         else {
             costToNode[i] = LONG_MAX;
@@ -33,7 +37,10 @@ AListGraph& Prim(Graph &graph) {
                 smallestWeight = costToNode[*unvisitedNodeIt];
             }
         }
+
+        //add that node and the edge which connects to it
         unvisitedNodeSet.erase(smallestNode);
+        result.AddEdge(bestEdges[smallestNode]);
 
         //find unvisited nodes adjacent to the smallest one
         for (auto unvisitedNodeIt = unvisitedNodeSet.begin(); unvisitedNodeIt != unvisitedNodeSet.end(); ++unvisitedNodeIt) {
@@ -42,7 +49,7 @@ AListGraph& Prim(Graph &graph) {
                 Weight costFromSmallestNode = costToNode[smallestNode] + graph.GetEdgeWeight(smallestNode, *unvisitedNodeIt);
                 if (costToUnvisitedNode > costFromSmallestNode) {
                     costToNode[*unvisitedNodeIt] = costFromSmallestNode;
-                    result.AddEdge(Edge(smallestNode, *unvisitedNodeIt));
+                    bestEdges[*unvisitedNodeIt] = Edge(smallestNode, *unvisitedNodeIt);
                 }
             }
         }
