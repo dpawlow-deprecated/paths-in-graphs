@@ -1,7 +1,7 @@
 #include <set>
 #include "Dijkstra.h"
 
-AListGraph& Dijkstra(Graph &graph) {
+Weight* Dijkstra(Graph &graph) {
     AListGraph result = AListGraph(graph.GetNumberOfNodes(), graph.IsDirected());
     std::set<Node > unvisitedNodeSet;
 
@@ -34,6 +34,7 @@ AListGraph& Dijkstra(Graph &graph) {
         }
         unvisitedNodeSet.erase(smallestNode);
 
+        //find unvisited nodes adjacent to the smallest one
         for (auto unvisitedNodeIt = unvisitedNodeSet.begin(); unvisitedNodeIt != unvisitedNodeSet.end(); ++unvisitedNodeIt) {
             if(graph.EdgeExists(smallestNode, *unvisitedNodeIt)) {
                 Weight costToUnvisitedNode = costToNode[*unvisitedNodeIt];
@@ -45,5 +46,5 @@ AListGraph& Dijkstra(Graph &graph) {
         }
     }
     
-    return result;
+    return costToNode;
 }
