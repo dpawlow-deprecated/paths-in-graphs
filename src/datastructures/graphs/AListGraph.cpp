@@ -3,13 +3,15 @@
 using namespace std;
 
 AListGraph::AListGraph(unsigned long n_of_nodes, bool is_directed) {
-
+    vector<Edge> empty;
+    adjacency_list.assign(n_of_nodes,empty);
+    this->is_directed = is_directed;
 }
 
 AListGraph::AListGraph(Graph const &graph) {}
 
 void AListGraph::AddEdge(Edge const &edge) {
-    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+    if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists");
     }
     adjacency_list[edge.GetStartingNode()].emplace_back(Edge(edge));
@@ -68,8 +70,6 @@ vector<Edge>::iterator AListGraph::NextEdgesIterator(Node node, vector<Edge>::it
 bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
     return it != adjacency_list[node].end();
 }
-
-
 
 Path AListGraph::MinimumPath(Node start, Node finish) {
 
