@@ -81,7 +81,6 @@ void AMatrixGraph::PrintGraph(){
 
         }
         cout << endl;
-      dev
     }
 }
 
