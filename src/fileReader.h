@@ -16,7 +16,7 @@ public:
     static AMatrixGraph* HiperconectadosReaderToMatrixGraph(string from, bool is_directed);
     static AListGraph* HiperauditadosReaderToListGraph(string from, vector<int> *oil_cost, bool is_directed);
     static AMatrixGraph* HiperauditadosReaderToMatrixGraph(string from, vector<int> *oil_cost, bool is_directed);
-    static Edge obtainNewEdge(ifstream& inputFile);
+    static Edge ObtainNewEdge(ifstream& input_file);
 };
 
 #endif //PATHS_IN_GRAPHS_FILEREADER_H
