@@ -4,31 +4,47 @@
 
 AListGraph& Prim(Graph &graph) {
     AListGraph result = AListGraph(graph.GetNumberOfNodes(), graph.IsDirected());
-    std::set<Node > visitedNodeSet;
-    visitedNodeSet.insert(0);
+    std::set<Node > unvisitedNodeSet;
 
-    while(0 < graph.GetNumberOfNodes()) {
-        vector<Edge>::iterator smallestEdge;
+    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
+        unvisitedNodeSet.insert(Node(i));
+    }
+
+    Weight costToNode [graph.GetNumberOfNodes()];
+    costToNode[0] = 0;
+
+    for(int i = 1; i < graph.GetNumberOfNodes(); i++) {
+        if (graph.EdgeExists(0, i)) {
+            costToNode[i] = graph.GetEdgeWeight(0, i);
+        }
+        else {
+            costToNode[i] = LONG_MAX;
+        }
+    }
+
+    while(!unvisitedNodeSet.empty()) {
+
+        //find node with smallest cost
         Weight smallestWeight = LONG_MAX;
-
-        //for each already visited node
-        for(auto visitedNodeIt = visitedNodeSet.begin(); visitedNodeIt != visitedNodeSet.end(); ++visitedNodeIt) {
-            vector<Edge>::iterator edgeIt = graph.BeginEdgesIterator(*visitedNodeIt);
-
-            //for all its edges
-            while(graph.HasNextEdgesIterator(*visitedNodeIt, edgeIt)) {
-
-                //if its finishing node wasn't visited already, see if it is the smallest one
-                if(visitedNodeSet.find(edgeIt->GetFinishingNode()) == visitedNodeSet.end()) {
-                    if(smallestWeight > edgeIt->GetWeight()) {
-                        smallestEdge = edgeIt;
-                        smallestWeight = edgeIt->GetWeight();
-                    }
-                }
-                graph.NextEdgesIterator(*visitedNodeIt, edgeIt);
+        Node smallestNode = graph.GetNumberOfNodes() + 1;
+        for (auto unvisitedNodeIt = unvisitedNodeSet.begin(); unvisitedNodeIt != unvisitedNodeSet.end(); ++unvisitedNodeIt) {
+            if(smallestWeight > costToNode[*unvisitedNodeIt]) {
+                smallestNode = *unvisitedNodeIt;
+                smallestWeight = costToNode[*unvisitedNodeIt];
             }
-            visitedNodeSet.insert(smallestEdge->GetFinishingNode());
-            result.AddEdge(*smallestEdge);
+        }
+        unvisitedNodeSet.erase(smallestNode);
+
+        //find unvisited nodes adjacent to the smallest one
+        for (auto unvisitedNodeIt = unvisitedNodeSet.begin(); unvisitedNodeIt != unvisitedNodeSet.end(); ++unvisitedNodeIt) {
+            if(graph.EdgeExists(smallestNode, *unvisitedNodeIt)) {
+                Weight costToUnvisitedNode = costToNode[*unvisitedNodeIt];
+                Weight costFromSmallestNode = costToNode[smallestNode] + graph.GetEdgeWeight(smallestNode, *unvisitedNodeIt);
+                if (costToUnvisitedNode > costFromSmallestNode) {
+                    costToNode[*unvisitedNodeIt] = costFromSmallestNode;
+                    result.AddEdge(Edge(smallestNode, *unvisitedNodeIt));
+                }
+            }
         }
     }
 
