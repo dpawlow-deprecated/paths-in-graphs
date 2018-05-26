@@ -12,7 +12,7 @@ private:
         Weight weight;
 
         MatrixEdge(){
-            not_null = true;
+            not_null = false;
             weight = 0;
         }
 
@@ -23,13 +23,14 @@ private:
     };
 
     using AdjacencyRow = vector<MatrixEdge>;
-    using AdjacencyMatrix = vector<AdjacencyRow >;
+    using AdjacencyMatrix = vector<AdjacencyRow>;
 
     AdjacencyMatrix adjacency_matrix;
     bool is_directed;
 
 public:
     AMatrixGraph(unsigned long n_of_nodes, bool is_directed);
+    AMatrixGraph(vector<Edge> const &edges, unsigned long n_of_nodes, bool is_directed);
     explicit AMatrixGraph(Graph &graph);
 
     void AddEdge(Edge const &edge) override;
@@ -42,7 +43,7 @@ public:
     unsigned long GetNumberOfNodes() const override;
 
     vector<Edge>::iterator BeginEdgesIterator(Node node) override;
-    vector<Edge>::iterator NextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
+    void NextEdgesIterator(Node node, vector<Edge>::iterator &it) override ;
     bool HasNextEdgesIterator(Node node, vector<Edge>::iterator it) override ;
 
     Path MinimumPath(Node start, Node finish) override;

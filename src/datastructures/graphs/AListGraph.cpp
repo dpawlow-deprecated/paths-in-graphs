@@ -8,6 +8,15 @@ AListGraph::AListGraph(unsigned long n_of_nodes, bool is_directed) {
     this->is_directed = is_directed;
 }
 
+AListGraph::AListGraph(const vector<Edge> &edges, unsigned long n_of_nodes, bool is_directed) {
+    vector<Edge> empty;
+    adjacency_list.assign(n_of_nodes,empty);
+    for (Edge const &edge : edges) {
+        AddEdge(edge);
+    }
+    this->is_directed = is_directed;
+}
+
 AListGraph::AListGraph(Graph const &graph) {}
 
 void AListGraph::AddEdge(Edge const &edge) {
@@ -60,11 +69,11 @@ vector<Edge>::iterator AListGraph::BeginEdgesIterator(Node node) {
     return adjacency_list[node].begin();
 }
 
-vector<Edge>::iterator AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it) {
+void AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it) {
     if (!HasNextEdgesIterator(node, it)) {
         throw logic_error("Doesn't have next iterator");
     }
-    return it++;
+    advance(it, 1);
 }
 
 bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
@@ -76,5 +85,22 @@ Path AListGraph::MinimumPath(Node start, Node finish) {
 }
 
 unique_ptr<Graph> AListGraph::MinimumSpanningTree() {
+
+}
+
+void AListGraph::PrintGraph() {
+    cout << "     " ;
+    for (Node i = 0; i < this->GetNumberOfNodes(); ++i) {
+        cout << "\n" << i << "->";
+        auto it = this->BeginEdgesIterator(i);
+        while(this->HasNextEdgesIterator(i, it)) {
+            cout << it->GetFinishingNode();
+            this->NextEdgesIterator(i, it);
+            if (this->HasNextEdgesIterator(i, it)) {
+                cout << ",";
+            }
+        }
+    }
+    cout << endl;
 
 }

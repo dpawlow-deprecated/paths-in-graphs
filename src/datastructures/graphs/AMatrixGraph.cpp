@@ -7,6 +7,16 @@ AMatrixGraph::AMatrixGraph(unsigned long n_of_nodes, bool is_directed) {
     this->is_directed = is_directed;
 }
 
+AMatrixGraph::AMatrixGraph(vector<Edge> const &edges, unsigned long n_of_nodes, bool is_directed) {
+    AdjacencyRow row = vector<MatrixEdge>(n_of_nodes, MatrixEdge());
+    adjacency_matrix = vector<AdjacencyRow>(n_of_nodes, row);
+    for (Edge const &edge : edges) {
+        AddEdge(edge);
+    }
+    this->is_directed = is_directed;
+}
+
+
 AMatrixGraph::AMatrixGraph(Graph &graph) {
     this->is_directed = graph.IsDirected();
 
@@ -19,16 +29,17 @@ AMatrixGraph::AMatrixGraph(Graph &graph) {
 }
 
 void AMatrixGraph::AddEdge(Edge const &edge) {
-    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+    if (EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge already exists.");
     }
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()] = MatrixEdge(edge.GetWeight());
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
     }
+
 }
 
-Path AMatrixGraph::MinimumPath(Node start, Node finish) {
+Path AMatrixGraph::MinimumPath(Node start, Node finish){
     Path path = Path();
     return path;
 }
@@ -74,9 +85,12 @@ void AMatrixGraph::PrintGraph(){
     for (int i = 0; i < adjacency_matrix.size(); ++i) {
         cout << i << "  | ";
         for (int j = 0; j < adjacency_matrix.size(); ++j) {
-            if(adjacency_matrix[i][j].weight < 10) cout << 0;
+            if(EdgeExists(i,j)){
+            if(adjacency_matrix[i][j].weight < 10  && adjacency_matrix[i][j].weight >=0) cout << 0;
             cout << adjacency_matrix[i][j].weight;
-
+            } else {
+                cout << " -";
+            }
                 cout << " | ";
 
         }
@@ -91,7 +105,8 @@ unsigned long AMatrixGraph::GetNumberOfNodes() const {
 vector<Edge>::iterator AMatrixGraph::BeginEdgesIterator(Node node){
 
 }
-vector<Edge>::iterator AMatrixGraph::NextEdgesIterator(Node node, vector<Edge>::iterator it){
+
+void AMatrixGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it){
 
 }
 
