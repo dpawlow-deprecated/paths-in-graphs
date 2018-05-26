@@ -1,6 +1,6 @@
 #include "BellmanFord.h"
 
-void BellmanFordAlgorithm(AListGraph listGraph){
+Weight* BellmanFordAlgorithm(AListGraph listGraph){
 
     Weight costToNode [listGraph.GetNumberOfNodes()];
     costToNode[0] = 0;
@@ -8,17 +8,12 @@ void BellmanFordAlgorithm(AListGraph listGraph){
         costToNode[i] = LONG_MAX;
     }
 
-    bool shouldContinue;
     for (int j = 0; j < listGraph.GetNumberOfNodes(); ++j) {
         auto it = listGraph.BeginEdgesIterator(j);
-        shouldContinue = true;
-        while(shouldContinue){
+        while(listGraph.HasNextEdgesIterator(j, it)){
             costToNode[it->GetFinishingNode()] = min(costToNode[it->GetFinishingNode()],costToNode[j] + listGraph.GetEdgeWeight(j, it->GetFinishingNode()));
-            if(listGraph.HasNextEdgesIterator(j, it)){
-                listGraph.NextEdgesIterator(j, it);
-            } else {
-                shouldContinue = false;
-            }
+            listGraph.NextEdgesIterator(j, it);
         }
     }
+    return costToNode;
 }
