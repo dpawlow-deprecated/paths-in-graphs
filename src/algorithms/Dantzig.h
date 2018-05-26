@@ -3,7 +3,7 @@
 #define PATHS_IN_GRAPHS_DANTZIG_H
 #include "../datastructures/graphs/AMatrixGraph.h"
 
-void dantzigAlgorithm(AMatrixGraph matrix);
-
+AMatrixGraph DantzigAlgorithm(AMatrixGraph &matrixG);
+Weight getMinOf(AMatrixGraph &matrixGraph, int limit, Node rowValue, Node columnValue);
 
 #endif //PATHS_IN_GRAPHS_DANTZIG_H
