@@ -14,7 +14,7 @@ private:
     vector<Node> heights;
 
 public:
-    explicit UnionDisjointSet(int n_of_nodes);
+    explicit UnionDisjointSet(unsigned long n_of_nodes);
     Node Find(Node n);
     void Union(Node a, Node b);
 };
