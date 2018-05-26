@@ -23,15 +23,6 @@ vector<Edge> TreeGenerator(int number_of_nodes, int minWeight, int maxWeight){
     return vector_graph;
 }
 
-void checkValues( vector<pair<bool,bool >> &nodes_without_edges) {
-    for (int k = 0; k < nodes_without_edges.size(); k++) {
-        if (nodes_without_edges[k].first == false && nodes_without_edges[k].second == false) {
-            throw "LA CAGAMOS";
-        }
-    }
-}
-
-
 Node getNodeWithoutEdges( vector<pair<bool,bool >> &nodes_without_edges, Node start){
     Node randNode;
     do{
@@ -45,11 +36,21 @@ Node getNodeWithoutEdges( vector<pair<bool,bool >> &nodes_without_edges, Node st
 Node getStartNode(vector<pair<bool,bool >> &nodes_without_edges){
     Node randNode = (Node) (rand() % (nodes_without_edges.size()));
 
-    for (Node i = 0; i < nodes_without_edges.size(); ++i) {
-        if (!nodes_without_edges[i].first && !nodes_without_edges[i].second) {
-            randNode = i;
+    if (!(!nodes_without_edges[randNode].first && !nodes_without_edges[randNode].second)){
+        for (Node i = 0; i < nodes_without_edges.size(); ++i) {
+            if (!nodes_without_edges[i].first && !nodes_without_edges[i].second) {
+                randNode = i;
+            }
         }
     }
     nodes_without_edges[randNode].first = true;
     return randNode;
+}
+
+void checkValues( vector<pair<bool,bool >> &nodes_without_edges) {
+    for (int k = 0; k < nodes_without_edges.size(); k++) {
+        if (nodes_without_edges[k].first == false && nodes_without_edges[k].second == false) {
+            throw "LA CAGAMOS";
+        }
+    }
 }
