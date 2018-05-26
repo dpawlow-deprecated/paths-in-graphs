@@ -3,6 +3,7 @@
 
 #include <bits/forward_list.h>
 #include "Graph.h"
+#include <iostream>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ public:
 
     Path MinimumPath(Node start, Node finish) override;
     unique_ptr<Graph> MinimumSpanningTree() override;
+
+    void PrintGraph();
 };
 
 

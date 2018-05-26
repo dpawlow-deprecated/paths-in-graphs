@@ -78,3 +78,20 @@ Path AListGraph::MinimumPath(Node start, Node finish) {
 unique_ptr<Graph> AListGraph::MinimumSpanningTree() {
 
 }
+
+void AListGraph::PrintGraph() {
+    cout << "     " ;
+    for (Node i = 0; i < this->GetNumberOfNodes(); ++i) {
+        cout << "\n" << i << "->";
+        auto it = this->BeginEdgesIterator(i);
+        while(this->HasNextEdgesIterator(i, it)) {
+            cout << it->GetFinishingNode();
+            this->NextEdgesIterator(i, it);
+            if (this->HasNextEdgesIterator(i, it)) {
+                cout << ",";
+            }
+        }
+    }
+    cout << endl;
+
+}
