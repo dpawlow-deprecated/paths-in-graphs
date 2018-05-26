@@ -7,11 +7,13 @@ AMatrixGraph::AMatrixGraph(unsigned long n_of_nodes, bool is_directed) {
     this->is_directed = is_directed;
 }
 
-AMatrixGraph::AMatrixGraph(vector<Edge> &edge, bool is_directed) {
-    AMatrixGraph(edge.size(),is_directed);
-    for (int i = 0; i < edge.size(); ++i) {
-        this->AddEdge(edge[i]);
+AMatrixGraph::AMatrixGraph(vector<Edge> const &edges, bool is_directed) {
+    AdjacencyRow row = vector<MatrixEdge>(edges.size(), MatrixEdge());
+    adjacency_matrix = vector<AdjacencyRow>(edges.size(), row);
+    for (Edge const &edge : edges) {
+        AddEdge(edge);
     }
+    this->is_directed = is_directed;
 }
 
 
