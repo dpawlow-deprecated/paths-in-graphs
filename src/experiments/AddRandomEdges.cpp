@@ -1,12 +1,12 @@
 #include "AddRandomEdges.h"
 
-void AddRandomEdges(Graph &graph, int cantNodes, int minWeight, int maxWeight) {
+void AddRandomEdges(Graph &graph, int cantEdges, int minWeight, int maxWeight) {
     srand(time(NULL));
 
     Node randStartEdge;
     Node randEndEdge;
 
-    for (int i = 0; i < cantNodes; ++i) {
+    for (int i = 0; i < cantEdges; ++i) {
         if(!isComplete(graph)){
             do {
                 randStartEdge = rand() % graph.GetNumberOfNodes();
@@ -15,7 +15,7 @@ void AddRandomEdges(Graph &graph, int cantNodes, int minWeight, int maxWeight) {
 
             graph.AddEdge(Edge(randStartEdge, randEndEdge, rand() % (maxWeight - minWeight + 1) + minWeight));
         } else {
-            break;
+            throw logic_error("Estas agregando mas ejes de los posibles");
         }
     }
 }
