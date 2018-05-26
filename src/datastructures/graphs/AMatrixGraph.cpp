@@ -8,12 +8,10 @@ AMatrixGraph::AMatrixGraph(unsigned long n_of_nodes, bool is_directed) {
 }
 
 AMatrixGraph::AMatrixGraph(vector<Edge> &edge, bool is_directed) {
-    AdjacencyRow row = vector<MatrixEdge>(edge.size(), MatrixEdge());
-    this->adjacency_matrix = vector<AdjacencyRow>(edge.size(), row);
+    AMatrixGraph(edge.size(),is_directed);
     for (int i = 0; i < edge.size(); ++i) {
         this->AddEdge(edge[i]);
     }
-    this->is_directed = is_directed;
 }
 
 
