@@ -33,8 +33,3 @@ AListGraph* KruskalPathCompression(Graph &graph) {
     delete edges_ptr;
     return agm_ptr;
 }
-
-AListGraph* KruskalWithLists(Graph &graph) {
-    auto * agm_ptr = new AListGraph(graph.GetNumberOfNodes(), false);
-
-}
