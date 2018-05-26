@@ -85,8 +85,11 @@ void AListGraph::PrintGraph() {
         cout << "\n" << i << "->";
         auto it = this->BeginEdgesIterator(i);
         while(this->HasNextEdgesIterator(i, it)) {
-            cout << it->GetFinishingNode() << ",";
+            cout << it->GetFinishingNode();
             this->NextEdgesIterator(i, it);
+            if (this->HasNextEdgesIterator(i, it)) {
+                cout << ",";
+            }
         }
     }
     cout << endl;
