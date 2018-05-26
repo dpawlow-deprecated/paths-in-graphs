@@ -30,7 +30,7 @@ private:
 
 public:
     AMatrixGraph(unsigned long n_of_nodes, bool is_directed);
-    AMatrixGraph(vector<Edge> const &edges, bool is_directed);
+    AMatrixGraph(vector<Edge> const &edges, unsigned long n_of_nodes, bool is_directed);
     explicit AMatrixGraph(Graph &graph);
 
     void AddEdge(Edge const &edge) override;
