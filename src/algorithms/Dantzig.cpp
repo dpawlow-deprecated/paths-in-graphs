@@ -19,8 +19,8 @@ AMatrixGraph DantzigAlgorithm(AMatrixGraph &matrixG) {
             }
         }
 
-        for (Node i = 0; i < k; i++) {
-            for (Node j = 0; j < k; j++) {
+        for (Node i = 0; i <= k; i++) {
+            for (Node j = 0; j <= k; j++) {
                 if (i != j) {
                     if (matrixGraph.EdgeExists(i, j) && matrixGraph.EdgeExists(i, k + 1) && matrixGraph.EdgeExists(k + 1, j)) {
                         matrixGraph.SetEdgeWeight(i, j, min(matrixGraph.GetEdgeWeight(i, j), matrixGraph.GetEdgeWeight(i, k + 1) + matrixGraph.GetEdgeWeight(k + 1, j)));
