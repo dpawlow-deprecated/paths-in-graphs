@@ -12,7 +12,7 @@ vector<Edge>* GetEdges(Graph &graph) {
         auto it = graph.BeginEdgesIterator(i);
         while (graph.HasNextEdgesIterator(i, it)) {
             edges_ptr->emplace_back(Edge(*it));
-            it = graph.NextEdgesIterator(i, it);
+            graph.NextEdgesIterator(i, it);
         }
     }
     sort(edges_ptr->begin(), edges_ptr->end(), EdgeIsLighter);
