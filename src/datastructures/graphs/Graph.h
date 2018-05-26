@@ -23,6 +23,8 @@ public:
 
     virtual Path MinimumPath(Node start, Node finish) = 0;
     virtual unique_ptr<Graph> MinimumSpanningTree() = 0;
+
+    virtual void PrintGraph() = 0;
 };
 
 

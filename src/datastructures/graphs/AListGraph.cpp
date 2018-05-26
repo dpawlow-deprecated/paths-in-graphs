@@ -68,7 +68,7 @@ void AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it) {
 }
 
 bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
-    return ++it != adjacency_list[node].end();
+    return it != adjacency_list[node].end();
 }
 
 Path AListGraph::MinimumPath(Node start, Node finish) {
@@ -76,5 +76,22 @@ Path AListGraph::MinimumPath(Node start, Node finish) {
 }
 
 unique_ptr<Graph> AListGraph::MinimumSpanningTree() {
+
+}
+
+void AListGraph::PrintGraph() {
+    cout << "     " ;
+    for (Node i = 0; i < this->GetNumberOfNodes(); ++i) {
+        cout << "\n" << i << "->";
+        auto it = this->BeginEdgesIterator(i);
+        while(this->HasNextEdgesIterator(i, it)) {
+            cout << it->GetFinishingNode();
+            this->NextEdgesIterator(i, it);
+            if (this->HasNextEdgesIterator(i, it)) {
+                cout << ",";
+            }
+        }
+    }
+    cout << endl;
 
 }
