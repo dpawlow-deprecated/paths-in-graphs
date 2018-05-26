@@ -13,6 +13,7 @@ private:
 
 public:
     AListGraph(unsigned long n_of_nodes, bool is_directed);
+    AListGraph(vector<Edge> &edge, bool is_directed);
     AListGraph(Graph const &graph);
 
     void AddEdge(Edge const &edge) override;

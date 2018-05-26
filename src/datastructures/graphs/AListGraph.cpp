@@ -8,6 +8,15 @@ AListGraph::AListGraph(unsigned long n_of_nodes, bool is_directed) {
     this->is_directed = is_directed;
 }
 
+AListGraph::AListGraph(vector<Edge> &edge, bool is_directed) {
+    vector<Edge> empty;
+    adjacency_list.assign(edge.size(),empty);
+    for (int i = 0; i < edge.size(); ++i) {
+        this->AddEdge(edge[i]);
+    }
+    this->is_directed = is_directed;
+}
+
 AListGraph::AListGraph(Graph const &graph) {}
 
 void AListGraph::AddEdge(Edge const &edge) {
