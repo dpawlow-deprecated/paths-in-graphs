@@ -1,27 +1,23 @@
 #ifndef PATHS_IN_GRAPHS_TYPES_H
 #define PATHS_IN_GRAPHS_TYPES_H
 #include <vector>
+#include "../datastructures/graphs/Edge.h"
 
 using namespace std;
 using Node = unsigned long;
 using Weight = long;
 
-struct MatrixEdge {
-    bool not_null;
-    Weight weight;
+struct SolutionEj1 {
+    vector<Edge> always_present;
+    vector<Edge> sometimes_present;
 
-    MatrixEdge(){
-        not_null = true;
-        weight = 0;
+    void AddAlwaysPresent(Edge const &e) {
+        always_present.emplace_back(e);
     }
 
-    explicit MatrixEdge(Weight w) {
-        not_null = true;
-        weight = w;
+    void AddSometimesPresent(Edge const &e) {
+        sometimes_present.emplace_back(e);
     }
 };
-
-using AdjacencyRow = vector<MatrixEdge>;
-using AdjacencyMatrix = vector<AdjacencyRow>;
 
 #endif //PATHS_IN_GRAPHS_TYPES_H
