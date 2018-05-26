@@ -12,7 +12,7 @@ private:
         Weight weight;
 
         MatrixEdge(){
-            not_null = true;
+            not_null = false;
             weight = 0;
         }
 
