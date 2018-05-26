@@ -1,4 +1,3 @@
-#include <climits>
 #include "Dantzig.h"
 
 AMatrixGraph DantzigAlgorithm(AMatrixGraph &matrixG) {
