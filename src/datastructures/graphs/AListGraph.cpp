@@ -68,7 +68,7 @@ void AListGraph::NextEdgesIterator(Node node, vector<Edge>::iterator &it) {
 }
 
 bool AListGraph::HasNextEdgesIterator(Node node, vector<Edge>::iterator it) {
-    return ++it != adjacency_list[node].end();
+    return it != adjacency_list[node].end();
 }
 
 Path AListGraph::MinimumPath(Node start, Node finish) {
