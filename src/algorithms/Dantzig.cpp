@@ -7,15 +7,15 @@ AMatrixGraph DantzigAlgorithm(AMatrixGraph &matrixG) {
         for (Node i = 0; i <= k; i++) {
             if (i != k + 1) {
                 if (matrixGraph.EdgeExists(i, k + 1)) {
-                    matrixGraph.SetEdgeWeight(i, k + 1, getMinOf(matrixGraph, k, i, k + 1));
+                    matrixGraph.SetEdgeWeight(i, k + 1, getMin(matrixGraph, k, i, k + 1));
                 } else {
-                    matrixGraph.AddEdge(Edge(i, k + 1, getMinOf(matrixGraph, k, i, k + 1)));
+                    matrixGraph.AddEdge(Edge(i, k + 1, getMin(matrixGraph, k, i, k + 1)));
                 }
 
                 if (matrixGraph.EdgeExists(k + 1, i)) {
-                    matrixGraph.SetEdgeWeight(k + 1, i, getMinOf(matrixGraph, k, k + 1, i));
+                    matrixGraph.SetEdgeWeight(k + 1, i, getMin(matrixGraph, k, k + 1, i));
                 } else {
-                    matrixGraph.AddEdge(Edge(k + 1, i, getMinOf(matrixGraph, k, k + 1, i)));
+                    matrixGraph.AddEdge(Edge(k + 1, i, getMin(matrixGraph, k, k + 1, i)));
                 }
             }
         }
@@ -37,7 +37,7 @@ AMatrixGraph DantzigAlgorithm(AMatrixGraph &matrixG) {
     return matrixGraph;
 }
 
-Weight getMinOf(AMatrixGraph &matrixGraph, int limit, Node rowValue, Node columnValue) {
+Weight getMin(AMatrixGraph &matrixGraph, int limit, Node rowValue, Node columnValue) {
     Weight result;
 
     if(matrixGraph.EdgeExists(rowValue,columnValue)) {
