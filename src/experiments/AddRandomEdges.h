@@ -3,7 +3,7 @@
 
 #include "../datastructures/graphs/AListGraph.h"
 
-void AddRandomEdges(Graph &graph, int cantNodes, int minWeight, int maxWeight);
+void AddRandomEdges(Graph &graph, int cantEdges, int minWeight, int maxWeight);
 bool isComplete(Graph &graph);
 
 #endif //PATHS_IN_GRAPHS_ADDRANDOMEDGES_H

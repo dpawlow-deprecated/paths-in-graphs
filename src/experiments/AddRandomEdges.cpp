@@ -11,7 +11,8 @@ void AddRandomEdges(Graph &graph, int cantEdges, int minWeight, int maxWeight) {
             do {
                 randStartEdge = rand() % graph.GetNumberOfNodes();
                 randEndEdge = rand() % graph.GetNumberOfNodes();
-            } while (graph.EdgeExists(randStartEdge, randEndEdge));
+                isComplete(graph);
+            } while (graph.EdgeExists(randStartEdge, randEndEdge) || graph.EdgeExists(randEndEdge, randStartEdge) || randStartEdge == randEndEdge);
 
             graph.AddEdge(Edge(randStartEdge, randEndEdge, rand() % (maxWeight - minWeight + 1) + minWeight));
         } else {
@@ -23,7 +24,7 @@ void AddRandomEdges(Graph &graph, int cantEdges, int minWeight, int maxWeight) {
 bool isComplete(Graph &graph){
     for (Node i = 0; i < graph.GetNumberOfNodes(); ++i) {
         for (Node j = 0; j < graph.GetNumberOfNodes(); ++j) {
-            if(!graph.EdgeExists(i,j)){
+            if(!graph.EdgeExists(i,j) && !graph.EdgeExists(j,i) && i != j){
                 return false;
             }
         }
