@@ -1,0 +1,9 @@
+#ifndef PATHS_IN_GRAPHS_DIJKSTRA_H
+#define PATHS_IN_GRAPHS_DIJKSTRA_H
+
+
+class Dijkstra {
+};
+
+
+#endif //PATHS_IN_GRAPHS_DIJKSTRA_H
