@@ -22,7 +22,11 @@ SolutionEj1* Hiperconectados(Graph &graph) {
             while (j < edges_ptr->size() && edges_ptr->at(j).GetWeight() == edges_ptr->at(i).GetWeight()) {
                 bool closes_same_loop = parent_start == uds.Find(edges_ptr->at(j).GetStartingNode());
                 closes_same_loop &= parent_finish == uds.Find(edges_ptr->at(j).GetFinishingNode());
-                if (closes_same_loop) {
+
+                bool closes_same_loop_reverse = parent_finish == uds.Find(edges_ptr->at(j).GetStartingNode());
+                closes_same_loop_reverse &= parent_start == uds.Find(edges_ptr->at(j).GetFinishingNode());
+
+                if (closes_same_loop || closes_same_loop_reverse) {
                     solution->AddSometimesPresent(Edge(edges_ptr->at(j)));
                     is_unique = false;
                 }
