@@ -2,6 +2,7 @@
 #define PATHS_IN_GRAPHS_HIPERCONECTADOS_H
 
 #include "datastructures/graphs/Edge.h"
+#include "datastructures/graphs/Graph.h"
 
 struct SolutionEj1 {
     vector<Edge> always_present;
@@ -15,5 +16,7 @@ struct SolutionEj1 {
         sometimes_present.emplace_back(e);
     }
 };
+
+SolutionEj1* Hiperconectados(Graph &graph);
 
 #endif //PATHS_IN_GRAPHS_HIPERCONECTADOS_H

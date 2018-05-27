@@ -1,6 +1,5 @@
 #include "Hiperconectados.h"
 
-#include "datastructures/graphs/AListGraph.h"
 #include "algorithms/Kruskal.h"
 #include "datastructures/UnionDisjointSet.h"
 

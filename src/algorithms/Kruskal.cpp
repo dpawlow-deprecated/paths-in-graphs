@@ -11,11 +11,12 @@ vector<Edge>* GetEdges(Graph &graph) {
     for (unsigned long i = 0; i < graph.GetNumberOfNodes(); i++) {
         auto it = graph.BeginEdgesIterator(i);
         while (graph.HasNextEdgesIterator(i, it)) {
-            edges_ptr->emplace_back(Edge(*it));
+            if (it->GetStartingNode() < it->GetFinishingNode()) {
+                edges_ptr->emplace_back(Edge(*it));
+            }
             graph.NextEdgesIterator(i, it);
         }
     }
-    edges_ptr->erase(unique(edges_ptr->begin(), edges_ptr->end()), edges_ptr->end());
     sort(edges_ptr->begin(), edges_ptr->end(), EdgeIsLighter);
     return edges_ptr;
 }
