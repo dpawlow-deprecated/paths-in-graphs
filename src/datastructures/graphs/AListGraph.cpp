@@ -25,7 +25,7 @@ void AListGraph::AddEdge(Edge const &edge) {
     }
     adjacency_list[edge.GetStartingNode()].emplace_back(Edge(edge));
     if (!IsDirected()) {
-        adjacency_list[edge.GetFinishingNode()].emplace_back(Edge(edge));
+        adjacency_list[edge.GetFinishingNode()].emplace_back(Edge(edge.GetFinishingNode(), edge.GetStartingNode(), edge.GetWeight()));
     }
 }
 
