@@ -1,19 +1,20 @@
 #ifndef PATHS_IN_GRAPHS_HIPERCONECTADOS_H
 #define PATHS_IN_GRAPHS_HIPERCONECTADOS_H
 
+#include <set>
 #include "datastructures/graphs/Edge.h"
 #include "datastructures/graphs/Graph.h"
 
 struct SolutionEj1 {
-    vector<Edge> always_present;
-    vector<Edge> sometimes_present;
+    set<Edge> always_present;
+    set<Edge> sometimes_present;
 
     void AddAlwaysPresent(Edge const &e) {
-        always_present.emplace_back(e);
+        always_present.emplace(e);
     }
 
     void AddSometimesPresent(Edge const &e) {
-        sometimes_present.emplace_back(e);
+        sometimes_present.emplace(e);
     }
 };
 

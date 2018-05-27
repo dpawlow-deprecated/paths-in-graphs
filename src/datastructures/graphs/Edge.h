@@ -14,6 +14,13 @@ public:
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
     bool operator==(Edge const &e);
+    friend bool operator<(const Edge& l, const Edge& r) {
+        if (l.GetStartingNode() == r.GetStartingNode()) {
+            return l.GetFinishingNode() < r.GetFinishingNode();
+        }
+        return l.GetStartingNode() < r.GetStartingNode();
+    }
+
 
 private:
     Node start;
