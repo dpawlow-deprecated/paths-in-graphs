@@ -5,6 +5,8 @@
 #include <zconf.h>
 #include "src/datastructures/graphs/AListGraph.h"
 #include "src/algorithms/Floyd.h"
+#include "src/experiments/treeGenerator.h"
+#include "src/algorithms/Kruskal.h"
 
 string getActualDir(){
     char wd[256];
@@ -21,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     if (argc >= 1 and argc <= 4) {
         selector = atoi(argv[1]);
-        is_directed = argv[2];
+        is_directed = false;
         file = argv[3];
     } else {
         cout << "Faltan parametros" << endl;
@@ -29,7 +31,7 @@ int main(int argc, char *argv[]) {
     }
 
     AMatrixGraph aMatrixGraph = AMatrixGraph(0,true);
-    AListGraph listGraph = AListGraph(0,true);
+    AListGraph listGraph = AListGraph(0,false);
 
     string strFile = getActualDir() + file;
 
@@ -37,8 +39,11 @@ int main(int argc, char *argv[]) {
     if (selector == 1) {
         listGraph = fileReader::HiperconectadosReaderToListGraph(
                 strFile,
-                is_directed);
+                false);
     }
+
+    AListGraph* test = KruskalPathCompression(listGraph);
+
 
     if (selector == 2) {
         aMatrixGraph = fileReader::HiperconectadosReaderToMatrixGraph(
