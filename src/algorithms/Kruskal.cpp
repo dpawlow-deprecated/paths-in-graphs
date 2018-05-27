@@ -15,6 +15,7 @@ vector<Edge>* GetEdges(Graph &graph) {
             graph.NextEdgesIterator(i, it);
         }
     }
+    edges_ptr->erase(unique(edges_ptr->begin(), edges_ptr->end()), edges_ptr->end());
     sort(edges_ptr->begin(), edges_ptr->end(), EdgeIsLighter);
     return edges_ptr;
 }

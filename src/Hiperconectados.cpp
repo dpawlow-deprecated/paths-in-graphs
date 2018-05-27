@@ -17,7 +17,7 @@ SolutionEj1* Hiperconectados(Graph &graph) {
 
         //Check if it creates a cycle
         if (parent_start != parent_finish) {
-            bool is_highlander = true;
+            bool is_unique = true;
             unsigned long j = i + 1;
             //Check every edge of the same weight that would form the same cycle
             while (j < edges_ptr->size() && edges_ptr->at(j).GetWeight() == edges_ptr->at(i).GetWeight()) {
@@ -25,15 +25,15 @@ SolutionEj1* Hiperconectados(Graph &graph) {
                 closes_same_loop &= parent_finish == uds.Find(edges_ptr->at(j).GetFinishingNode());
                 if (closes_same_loop) {
                     solution->AddSometimesPresent(Edge(edges_ptr->at(j)));
-                    is_highlander = false;
+                    is_unique = false;
                 }
                 j++;
             }
 
-            if (is_highlander) {
-                solution->AddSometimesPresent(Edge(edges_ptr->at(i))); //There can be only one
+            if (is_unique) {
+                solution->AddAlwaysPresent(Edge(edges_ptr->at(i))); //There can be only one
             } else {
-                solution->AddAlwaysPresent(Edge(edges_ptr->at(i)));
+                solution->AddSometimesPresent(Edge(edges_ptr->at(i)));
             }
             uds.Union(edges_ptr->at(i).GetStartingNode(), edges_ptr->at(i).GetFinishingNode());
         }
