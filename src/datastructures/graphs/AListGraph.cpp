@@ -43,7 +43,7 @@ void AListGraph::RemoveEdge(Edge const &edge) {
     if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge doesn't exist");
     }
-    if (is_directed) {
+    if (!IsDirected()) {
         DeleteEdgeByNodes(edge.GetFinishingNode(), edge.GetStartingNode());
     }
     DeleteEdgeByNodes(edge.GetStartingNode(), edge.GetFinishingNode());
