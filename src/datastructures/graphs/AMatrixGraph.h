@@ -34,6 +34,7 @@ public:
     explicit AMatrixGraph(Graph &graph);
 
     void AddEdge(Edge const &edge) override;
+    void RemoveEdge(Edge const &edge) override;
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;

@@ -11,6 +11,7 @@ class AListGraph: public Graph {
 private:
     vector<vector<Edge>> adjacency_list;
     bool is_directed;
+    void DeleteEdgeByNodes(Node start, Node finish);
 
 public:
     AListGraph(unsigned long n_of_nodes, bool is_directed);
@@ -18,6 +19,7 @@ public:
     AListGraph(Graph const &graph);
 
     void AddEdge(Edge const &edge) override;
+    void RemoveEdge(Edge const &edge) override;
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;

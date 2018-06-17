@@ -39,6 +39,16 @@ void AMatrixGraph::AddEdge(Edge const &edge) {
 
 }
 
+void AMatrixGraph::RemoveEdge(Edge const &edge) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+        throw logic_error("Edge doesn't exist");
+    }
+    if (is_directed) {
+        adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()].not_null = false;
+    }
+    adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()].not_null = false;
+}
+
 Path AMatrixGraph::MinimumPath(Node start, Node finish){
     Path path = Path();
     return path;
