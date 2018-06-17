@@ -25,8 +25,28 @@ void AListGraph::AddEdge(Edge const &edge) {
     }
     adjacency_list[edge.GetStartingNode()].emplace_back(Edge(edge));
     if (!IsDirected()) {
-        adjacency_list[edge.GetFinishingNode()].emplace_back(Edge(edge));
+        adjacency_list[edge.GetFinishingNode()].emplace_back(Edge(edge.GetFinishingNode(), edge.GetStartingNode(), edge.GetWeight()));
     }
+}
+
+void AListGraph::DeleteEdgeByNodes(Node start, Node finish) {
+    Node index;
+    for (Node i = 0; i < adjacency_list[start].size(); ++i) {
+        if (adjacency_list[start][i].GetFinishingNode() == finish) {
+            index = i;
+        }
+    }
+    adjacency_list[start].erase(adjacency_list[start].begin() + index);
+}
+
+void AListGraph::RemoveEdge(Edge const &edge) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+        throw logic_error("Edge doesn't exist");
+    }
+    if (is_directed) {
+        DeleteEdgeByNodes(edge.GetFinishingNode(), edge.GetStartingNode());
+    }
+    DeleteEdgeByNodes(edge.GetStartingNode(), edge.GetFinishingNode());
 }
 
 bool AListGraph::EdgeInRange(Node start, Node finish) {
