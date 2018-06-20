@@ -12,6 +12,7 @@ private:
     vector<vector<Edge>> adjacency_list;
     bool is_directed;
     void DeleteEdgeByNodes(Node start, Node finish);
+    void SetEdgeWeightByNodes(Node start, Node finish, Weight w);
 
 public:
     AListGraph(unsigned long n_of_nodes, bool is_directed);
@@ -20,6 +21,7 @@ public:
 
     void AddEdge(Edge const &edge) override;
     void RemoveEdge(Edge const &edge) override;
+    void SetEdgeWeight(Edge const &edge, Weight weight) override;
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;

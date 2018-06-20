@@ -11,6 +11,7 @@ class Graph {
 public:
     virtual void AddEdge(Edge const &edge) = 0;
     virtual void RemoveEdge(Edge const &edge) = 0;
+    virtual void SetEdgeWeight(Edge const &edge, Weight weight) = 0;
     virtual bool EdgeExists(Node start, Node finish) = 0;
     virtual bool EdgeInRange(Node start, Node finish) = 0;
     virtual Weight GetEdgeWeight(Node start, Node finish) = 0;
