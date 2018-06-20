@@ -4,6 +4,7 @@
 #include <set>
 #include "datastructures/graphs/Edge.h"
 #include "datastructures/graphs/Graph.h"
+#include "datastructures/graphs/AListGraph.h"
 
 struct SolutionEj1 {
     set<Edge> always_present;
@@ -18,6 +19,6 @@ struct SolutionEj1 {
     }
 };
 
-SolutionEj1* Hiperconectados(Graph &graph);
+SolutionEj1* Hiperconectados(Graph &graph, AListGraph* GetMST(Graph));
 
 #endif //PATHS_IN_GRAPHS_HIPERCONECTADOS_H
