@@ -43,7 +43,7 @@ void AMatrixGraph::RemoveEdge(Edge const &edge) {
     if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
         throw logic_error("Edge doesn't exist");
     }
-    if (is_directed) {
+    if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()].not_null = false;
     }
     adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()].not_null = false;
