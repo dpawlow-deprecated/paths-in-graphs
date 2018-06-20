@@ -36,7 +36,16 @@ void AMatrixGraph::AddEdge(Edge const &edge) {
     if (!IsDirected()) {
         adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()] = MatrixEdge(edge.GetWeight());
     }
+}
 
+void AMatrixGraph::SetEdgeWeight(Edge const &edge, Weight weight) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+        throw logic_error("Edge doesn't exist");
+    }
+    if (!IsDirected()) {
+        adjacency_matrix[edge.GetFinishingNode()][edge.GetStartingNode()].weight = weight;
+    }
+    adjacency_matrix[edge.GetStartingNode()][edge.GetFinishingNode()].weight = weight;
 }
 
 void AMatrixGraph::RemoveEdge(Edge const &edge) {

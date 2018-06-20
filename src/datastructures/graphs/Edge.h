@@ -11,6 +11,7 @@ public:
     Edge(Node start, Node finish, Weight weight);
 
     Weight GetWeight() const;
+    void SetEdgeWeight(Weight w);
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
 
