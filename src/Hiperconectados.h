@@ -9,12 +9,17 @@
 struct SolutionEj1 {
     set<Edge> always_present;
     set<Edge> sometimes_present;
+    set<Edge> never_present;
 
     void AddAlwaysPresent(Edge const &e) {
         always_present.emplace(e);
     }
 
     void AddSometimesPresent(Edge const &e) {
+        sometimes_present.emplace(e);
+    }
+
+    void AddNeverPresent(Edge const &e) {
         sometimes_present.emplace(e);
     }
 };
