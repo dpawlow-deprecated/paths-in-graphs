@@ -38,6 +38,7 @@ public:
     bool EdgeExists(Node start, Node finish) override;
     bool EdgeInRange(Node start, Node finish) override;
     Weight GetEdgeWeight(Node start, Node finish) override;
+    void SetEdgeWeight(Edge const &e, Weight weight) override;
     void SetEdgeWeight(Node start, Node finish, Weight weight);
 
     bool IsDirected() const override;

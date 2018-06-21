@@ -11,10 +11,17 @@ public:
     Edge(Node start, Node finish, Weight weight);
 
     Weight GetWeight() const;
+    void SetEdgeWeight(Weight w);
     Node GetStartingNode() const;
     Node GetFinishingNode() const;
-
     bool operator==(Edge const &e);
+    friend bool operator<(const Edge& l, const Edge& r) {
+        if (l.GetStartingNode() == r.GetStartingNode()) {
+            return l.GetFinishingNode() < r.GetFinishingNode();
+        }
+        return l.GetStartingNode() < r.GetStartingNode();
+    }
+
 
 private:
     Node start;

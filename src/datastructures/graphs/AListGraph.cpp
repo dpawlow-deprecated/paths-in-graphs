@@ -29,11 +29,31 @@ void AListGraph::AddEdge(Edge const &edge) {
     }
 }
 
+void AListGraph::SetEdgeWeightByNodes(Node start, Node finish, Weight w) {
+    for (Edge &e : adjacency_list[start]) {
+        if (e.GetFinishingNode() == finish) {
+            e.SetEdgeWeight(w);
+            break;
+        }
+    }
+}
+
+void AListGraph::SetEdgeWeight(Edge const &edge, Weight weight) {
+    if (!EdgeExists(edge.GetStartingNode(), edge.GetFinishingNode())) {
+        throw logic_error("Edge doesn't exist");
+    }
+    if (!IsDirected()) {
+        SetEdgeWeightByNodes(edge.GetFinishingNode(), edge.GetStartingNode(), weight);
+    }
+    SetEdgeWeightByNodes(edge.GetStartingNode(), edge.GetFinishingNode(), weight);
+}
+
 void AListGraph::DeleteEdgeByNodes(Node start, Node finish) {
     Node index;
     for (Node i = 0; i < adjacency_list[start].size(); ++i) {
         if (adjacency_list[start][i].GetFinishingNode() == finish) {
             index = i;
+            break;
         }
     }
     adjacency_list[start].erase(adjacency_list[start].begin() + index);

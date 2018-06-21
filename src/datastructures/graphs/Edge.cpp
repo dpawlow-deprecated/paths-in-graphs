@@ -21,6 +21,10 @@ Weight Edge::GetWeight() const {
     return this->weight;
 }
 
+void Edge::SetEdgeWeight(Weight w) {
+    this->weight = w;
+}
+
 Node Edge::GetStartingNode() const {
     return this->start;
 }
@@ -30,8 +34,8 @@ Node Edge::GetFinishingNode() const {
 }
 
 bool Edge::operator==(Edge const &e) {
-    bool answer = this->GetStartingNode() == e.GetStartingNode();
-    answer &= this->GetFinishingNode() == e.GetFinishingNode();
+    bool answer = this->GetStartingNode() == e.GetStartingNode() && this->GetFinishingNode() == e.GetFinishingNode();
+    answer |= this->GetStartingNode() == e.GetFinishingNode() && this->GetFinishingNode() == e.GetStartingNode();
     answer &= this->GetWeight() == e.GetWeight();
     return answer;
 }

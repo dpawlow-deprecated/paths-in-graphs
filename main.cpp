@@ -14,7 +14,7 @@ string getActualDir(){
 }
 
 int main(int argc, char *argv[]) {
-
+    
     int selector;
     bool is_directed;
     string file;
