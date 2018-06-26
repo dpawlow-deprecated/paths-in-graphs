@@ -5,6 +5,6 @@
 #include <climits>
 #include <iostream>
 
-void BellmanFordAlgorithm(AListGraph listGraph);
+Weight* BellmanFordAlgorithm(AListGraph listGraph);
 
 #endif //PATHS_IN_GRAPHS_BELLMANFORD_H
