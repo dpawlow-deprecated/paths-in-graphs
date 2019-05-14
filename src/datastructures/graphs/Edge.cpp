@@ -21,6 +21,10 @@ Weight Edge::GetWeight() const {
     return this->weight;
 }
 
+void Edge::SetEdgeWeight(Weight w) {
+    this->weight = w;
+}
+
 Node Edge::GetStartingNode() const {
     return this->start;
 }
